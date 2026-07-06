@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PMS.Application.Features.CorrectiveActions.Commands.Create;
 using PMS.Application.Features.Employees.Commands.Create;
 using PMS.Application.Features.Employees.Commands.Update;
 using PMS.Application.Features.Employees.Queries.GetAll;
@@ -22,6 +23,11 @@ namespace PMS.API.Controllers
 
         [HttpPost]
         public async Task<ActionResult> Create(CreateEmployeeCommand command)
+            => Ok(await _mediator.Send(command));
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ActionResult> CorrectiveAction(CreateCorrectiveActionCommand command)
             => Ok(await _mediator.Send(command));
 
         [HttpPut("{id}")]

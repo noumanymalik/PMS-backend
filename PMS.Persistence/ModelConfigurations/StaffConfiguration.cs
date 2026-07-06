@@ -58,6 +58,18 @@ namespace PMS.Persistence.ModelConfigurations
             }
         }
 
+        internal class CorrectiveActionConfiguration : IEntityTypeConfiguration<CorrectiveAction>
+        {
+            public void Configure(EntityTypeBuilder<CorrectiveAction> builder)
+            {
+                builder.Property(x => x.CreateDate);
+                builder.Property(x => x.IncidentDate);
+                builder.Property(x => x.EmployeeId);
+                builder.Property(x => x.Action);
+                builder.Property(c => c.Reason).HasMaxLength(500).IsRequired();
+            }
+        }
+
         internal class DesignationConfiguration : IEntityTypeConfiguration<Designation>
         {
             public void Configure(EntityTypeBuilder<Designation> builder)

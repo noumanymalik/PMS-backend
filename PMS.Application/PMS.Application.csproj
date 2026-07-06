@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\CorrectiveActions\Queries\" />
     <Folder Include="Features\Lookups\Queries\GetEmployees\" />
     <Folder Include="Interfaces\Application\" />
   </ItemGroup>

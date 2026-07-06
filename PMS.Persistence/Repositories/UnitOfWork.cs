@@ -27,10 +27,11 @@ namespace PMS.Persistence.Repositories
         public IPermissionRepository PermissionRepository { get; set; }
         public IRolePermissionRepository RolePermissionRepository { get; set; }
         public ILoanRepository LoanRepository { get; set; }
+        public ICorrectiveActionRepository CorrectiveActionRepository { get; set; }
 
         public UnitOfWork(ApplicationDbContext dbContext, ICalenderDateRepository dateRepo, ICalenderWeekRepository weekRepo, ICalenderMonthRepository monthRepo, ICalenderYearRepository yearRepo, IRotaRepository rotaRepo,
                 IEmployeeRepository empRepo, IShifRepository shiftRepo, IDepartmentRepository deptRepo, IDesignationRepository desgRepo, ILeaveRepository leaveRepo,
-                IUserRepository UserRepo, IRoleRepository RoleRepo, IPermissionRepository permissionRepo, IRolePermissionRepository rolePermissionRepo, ILoanRepository loanRepo
+                IUserRepository UserRepo, IRoleRepository RoleRepo, IPermissionRepository permissionRepo, IRolePermissionRepository rolePermissionRepo, ILoanRepository loanRepo, ICorrectiveActionRepository correctiveActionRepo
 
 
             )
@@ -51,6 +52,7 @@ namespace PMS.Persistence.Repositories
             PermissionRepository = permissionRepo;
             RolePermissionRepository = rolePermissionRepo;
             LoanRepository = loanRepo;
+            CorrectiveActionRepository = correctiveActionRepo;
         }
 
         public void Dispose()

@@ -23,12 +23,17 @@ namespace PMS.API.Controllers
         [HttpGet]
         [Route("GetEmployeeStatus")]
         public async Task<ActionResult<List<GetEnumValuesResponse>>> GetEmployeeStatus()
-            => Ok(await _mediator.Send(new GetEnumValuesQuery { TypeOfEnum = GetEnumValuesQuery.EnumType.LeaveType, NameOfEnum = "PMS.Domain.Enums.Active, PMS.Domain" }));
+            => Ok(await _mediator.Send(new GetEnumValuesQuery { TypeOfEnum = GetEnumValuesQuery.EnumType.Active, NameOfEnum = "PMS.Domain.Enums.Active, PMS.Domain" }));
 
         [HttpGet]
         [Route("GetEmployeeGender")]
         public async Task<ActionResult<List<GetEnumValuesResponse>>> GetEmployeeGender()
-            => Ok(await _mediator.Send(new GetEnumValuesQuery { TypeOfEnum = GetEnumValuesQuery.EnumType.LeaveType, NameOfEnum = "PMS.Domain.Enums.Gender, PMS.Domain" }));
+            => Ok(await _mediator.Send(new GetEnumValuesQuery { TypeOfEnum = GetEnumValuesQuery.EnumType.Gender, NameOfEnum = "PMS.Domain.Enums.Gender, PMS.Domain" }));
+
+        [HttpGet]
+        [Route("GetCorrectiveActionType")]
+        public async Task<ActionResult<List<GetEnumValuesResponse>>> GetCorrectiveActionType()
+            => Ok(await _mediator.Send(new GetEnumValuesQuery { TypeOfEnum = GetEnumValuesQuery.EnumType.Action, NameOfEnum = "PMS.Domain.Enums.Action, PMS.Domain" }));
 
 
         [HttpGet]

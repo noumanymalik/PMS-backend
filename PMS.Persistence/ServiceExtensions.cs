@@ -39,42 +39,9 @@ namespace PMS.Persistence
                    .AddScoped<IPermissionRepository, PermissionRepository>()
                    .AddScoped<IRolePermissionRepository, RolePermissionRepository>()
                    .AddScoped<IDatabaseInitializer, DatabaseInitializer>()
-                   .AddScoped<IPermissionService, PermissionService>();
+                   .AddScoped<IPermissionService, PermissionService>()
+                   .AddScoped<ICorrectiveActionRepository, CorrectiveActionRepository>();
 
-
-
-
-            //    .AddScoped<IFiscalYearRepository, FiscalYearRepository>()
-            //    .AddScoped<IFiscalPeriodRepository, FiscalPeriodRepository>()
-            //    .AddScoped<IAccountClosingBalanceRepository, AccountClosingBalanceRepository>()
-            //    .AddScoped<IAccountTypeRepository, AccountTypeRepository>()
-            //    .AddScoped<IAccountSubTypeRepository, AccountSubTypeRepository>()
-            //    .AddScoped<IAccountRepository, AccountRepository>()
-            //    .AddScoped<IJournalEntryHeaderRepository, JournalEntryHeaderRepository>()
-            //    .AddScoped<IJournalEntryLineRepository, JournalEntryLineRepository>()
-            //    .AddScoped<ICustomerRepository, CustomerRepository>()
-            //    .AddScoped<ICategoryRepository, CategoryRepository>()
-            //    .AddScoped<IProductRepository, ProductRepository>()
-            //    .AddScoped<IProductPriceHistoryRepository, ProductPriceHistoryRepository>()
-            //    .AddScoped<IProductStockRepository, ProductStockRepository>()
-            //    .AddScoped<IInventoryRepository, InventoryRepository>()
-            //    .AddScoped<IUnitOfMeasureRepository, UnitOfMeasureRepository>()
-            //    .AddScoped<IVendorRepository, VendorRepository>()
-            //    .AddScoped<IBrokerRepository, BrokerRepository>()
-            //    .AddScoped<ISupplierRepository, SupplierRepository>()
-            //    .AddScoped<ICreditorRepository, CreditorRepository>()
-            //    .AddScoped<ISalesInvoiceRepository, SalesInvoiceRepository>()
-            //    .AddScoped<IPhoneRepository, PhoneRepository>()
-            //    .AddScoped<IPurchaseInvoiceRepository, PurchaseInvoiceRepository>()
-            //    .AddScoped<ISalesReturnRepository, SalesReturnRepository>()
-            //    .AddScoped<IPurchaseReturnRepository, PurchaseReturnRepository>()
-            //    .AddScoped<IUserRepository, UserRepository>()
-            //    .AddScoped<IRoleRepository, RoleRepository>()
-            //    .AddScoped<IPermissionRepository, PermissionRepository>()
-            //    .AddScoped<IRolePermissionRepository, RolePermissionRepository>()
-
-
-            //    .AddScoped<IPermissionService, PermissionService>();
 
             services.Configure<ApplicationDbSettings>(configuration.GetSection("ApplicationDbSettings"));
 

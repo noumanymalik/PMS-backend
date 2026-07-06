@@ -21,6 +21,7 @@ namespace PMS.Application.Interfaces.Repositories
         public IRoleRepository RoleRepository { get; set; }
         public IPermissionRepository PermissionRepository { get; set; }
         public IRolePermissionRepository RolePermissionRepository { get; set; }
+        public ICorrectiveActionRepository CorrectiveActionRepository { get; set; }
         Task BeginTransactionAsync();
         Task CommitTransactionAsync();
         Task RollbackTransactionAsync();

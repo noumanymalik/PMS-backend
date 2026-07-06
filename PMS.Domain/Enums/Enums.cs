@@ -88,6 +88,14 @@
         CC = 19, 
     }
 
+    public enum Action
+    {
+        VCA = 1,
+        FCA,
+        WCA,
+        CA
+    }
+
     public enum Permission
     {
         User_Management = 1,

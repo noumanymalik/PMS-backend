@@ -44,6 +44,13 @@ namespace PMS.Persistence.Repositories.Domain
         }
     }
 
+    public class CorrectiveActionRepository : GenericRepository<CorrectiveAction, int>, ICorrectiveActionRepository
+    {
+        public CorrectiveActionRepository(ApplicationDbContext context) : base(context)
+        {
+        }
+    }
+
     public class DepartmentRepository : GenericRepository<Department, int>, IDepartmentRepository
     {
         public DepartmentRepository(ApplicationDbContext context) : base(context)

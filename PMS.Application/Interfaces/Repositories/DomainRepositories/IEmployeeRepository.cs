@@ -11,6 +11,10 @@ namespace PMS.Application.Interfaces.Repositories.DomainRepositories
 
     }
 
+    public interface ICorrectiveActionRepository : IGenericRepository<CorrectiveAction, int>
+    {
+    }
+
     public interface IDepartmentRepository : IGenericRepository<Department, int>
     {
     }

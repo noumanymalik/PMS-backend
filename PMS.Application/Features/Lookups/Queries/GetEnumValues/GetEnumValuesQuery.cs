@@ -18,6 +18,7 @@ namespace PMS.Application.Features.Lookups.Queries.GetEnumValues
             Approval,
             Active,
             Gender,
+            Action,
         }
     }
 
