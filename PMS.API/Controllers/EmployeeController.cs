@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PMS.Application.Features.CorrectiveActions.Commands.Create;
+using PMS.Application.Features.CorrectiveActions.Queries.GetList;
 using PMS.Application.Features.Employees.Commands.Create;
 using PMS.Application.Features.Employees.Commands.Update;
 using PMS.Application.Features.Employees.Queries.GetAll;
@@ -64,6 +65,11 @@ namespace PMS.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<GetEmployeeByIdResponse>> Get(int id)
             => Ok(await _mediator.Send(new GetEmployeeByIdQuery() { Id = id }));
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<ActionResult> GetCorrectiveActionList([FromQuery] GetCorrectiveActionsListQuery query)
+         => Ok(await _mediator.Send(query));
 
 
         [HttpGet]

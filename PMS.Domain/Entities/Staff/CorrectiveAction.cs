@@ -9,5 +9,6 @@ namespace PMS.Domain.Entities.Staff
         public int EmployeeId { get; set; }
         public Enums.Action Action { get; set; }
         public string Reason { get; set; }
+        public Employee Employee { get; set; }
     }
 }

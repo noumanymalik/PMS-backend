@@ -632,6 +632,8 @@ namespace PMS.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmployeeId");
+
                     b.ToTable("CorrectiveAction");
                 });
 
@@ -1124,6 +1126,17 @@ namespace PMS.Persistence.Migrations
                     b.Navigation("Employee");
 
                     b.Navigation("Shift");
+                });
+
+            modelBuilder.Entity("PMS.Domain.Entities.Staff.CorrectiveAction", b =>
+                {
+                    b.HasOne("PMS.Domain.Entities.Staff.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("PMS.Domain.Entities.Staff.Employee", b =>
