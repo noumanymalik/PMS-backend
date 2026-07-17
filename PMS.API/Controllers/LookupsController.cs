@@ -35,6 +35,11 @@ namespace PMS.API.Controllers
         public async Task<ActionResult<List<GetEnumValuesResponse>>> GetCorrectiveActionType()
             => Ok(await _mediator.Send(new GetEnumValuesQuery { TypeOfEnum = GetEnumValuesQuery.EnumType.Action, NameOfEnum = "PMS.Domain.Enums.Action, PMS.Domain" }));
 
+        [HttpGet]
+        [Route("GetCorrectiveActionReason")]
+        public async Task<ActionResult<List<GetEnumValuesResponse>>> GetCorrectiveActionReason()
+            => Ok(await _mediator.Send(new GetEnumValuesQuery { TypeOfEnum = GetEnumValuesQuery.EnumType.Action, NameOfEnum = "PMS.Domain.Enums.ActionReason, PMS.Domain" }));
+
 
         [HttpGet]
         [Route("GetMonths")]

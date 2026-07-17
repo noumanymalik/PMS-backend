@@ -12,7 +12,7 @@ using PMS.Persistence.Context;
 namespace PMS.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260706200118_initial")]
+    [Migration("20260717182254_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -630,8 +630,19 @@ namespace PMS.Persistence.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("Remarks")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("ValidFromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ValidToDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

@@ -64,9 +64,12 @@ namespace PMS.Persistence.ModelConfigurations
             {
                 builder.Property(x => x.CreateDate);
                 builder.Property(x => x.IncidentDate);
+                builder.Property(x => x.ValidFromDate);
+                builder.Property(x => x.ValidToDate);
                 builder.Property(x => x.EmployeeId);
                 builder.Property(x => x.Action);
                 builder.Property(c => c.Reason).HasMaxLength(500).IsRequired();
+                builder.Property(c => c.Remarks).HasMaxLength(500).IsRequired();
             }
         }
 

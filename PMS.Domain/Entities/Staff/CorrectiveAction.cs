@@ -6,9 +6,12 @@ namespace PMS.Domain.Entities.Staff
     {
         public DateTime CreateDate { get; set; }
         public DateTime IncidentDate { get; set; }
+        public DateTime ValidFromDate { get; set; }
+        public DateTime ValidToDate { get; set; }
         public int EmployeeId { get; set; }
         public Enums.Action Action { get; set; }
         public string Reason { get; set; }
+        public string Remarks { get; set; }
         public Employee Employee { get; set; }
     }
 }

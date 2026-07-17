@@ -19,6 +19,7 @@ namespace PMS.Application.Features.Lookups.Queries.GetEnumValues
             Active,
             Gender,
             Action,
+            ActionReason,
         }
     }
 

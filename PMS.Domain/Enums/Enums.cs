@@ -96,6 +96,16 @@
         CA
     }
 
+    public enum ActionReason
+    {
+        Misbehave = 1,
+        Disobedience,
+        CallOuts,
+        Tardies,
+        Fraudulent_Sales,
+        Escalation
+    }
+
     public enum Permission
     {
         User_Management = 1,
@@ -112,6 +122,7 @@
         Designation,
         Add_New_Designation,
         Hierarchy,
+        Corrective_Action,
         Leave,
         Apply_Leave,
         Leave_Status,

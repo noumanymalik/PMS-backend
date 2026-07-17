@@ -26,6 +26,8 @@ namespace PMS.Application.Features.Loan.Queries.GetEmployeeForLoanRequest
             _mapper = mapper;
         }
 
+
+
         public async Task<IResponse<GetEmployeeForLoanRequestResponse>> Handle(GetEmployeeForLoanRequestQuery request, CancellationToken cancellationToken)
         {
             var employee = await _unitOfWork.EmployeeRepository.GetByIdAsync(request.EmployeeId,

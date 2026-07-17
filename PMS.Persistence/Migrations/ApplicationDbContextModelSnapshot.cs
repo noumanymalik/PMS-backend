@@ -627,8 +627,19 @@ namespace PMS.Persistence.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
+                    b.Property<string>("Remarks")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("ValidFromDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ValidToDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
