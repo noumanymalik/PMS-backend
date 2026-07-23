@@ -26,7 +26,7 @@ namespace PMS.Persistence.Repositories.Domain
                 .Select(x => x.Code)
                 .FirstOrDefaultAsync(cancellationToken: cancellationToken);
         }
-
+        
         public async Task<int> GetIdByEmployeeCodeAsync(string code, CancellationToken cancellationToken = default)
         {
             return (int)await DBContext.Employee
@@ -34,6 +34,15 @@ namespace PMS.Persistence.Repositories.Domain
                 .Where(x => x.Code == code)
                 .Select(x => (int?)x.Id)
                 .FirstOrDefaultAsync(cancellationToken: cancellationToken);
+        }
+
+        public async Task<int> GetIdByEmployeeNameAsync(string name, CancellationToken cancellationToken = default)
+        {
+            return await DBContext.Employee
+                .AsNoTracking()
+                .Where(x => x.Name == name)
+                .Select(x => (int?)x.Id)
+                .FirstOrDefaultAsync(cancellationToken) ?? 0;
         }
 
         public async Task<List<Employee>> GetBySupervisorId(int supervisorId, CancellationToken cancellationToken = default)

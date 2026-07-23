@@ -40,8 +40,11 @@ namespace PMS.Persistence
                    .AddScoped<IRolePermissionRepository, RolePermissionRepository>()
                    .AddScoped<IDatabaseInitializer, DatabaseInitializer>()
                    .AddScoped<IPermissionService, PermissionService>()
-                   .AddScoped<ICorrectiveActionRepository, CorrectiveActionRepository>();
-
+                   .AddScoped<ICorrectiveActionRepository, CorrectiveActionRepository>()
+                   .AddScoped<ICallLogsRepository, CallLogsRepository>()
+                   .AddScoped<ICallSummaryAllRepository, CallSummaryAllRepository>()
+                   .AddScoped<ICallSummaryInboundRepository, CallSummaryInboundRepository>()
+                   .AddScoped<ISalesRepository, SalesRepository>();
 
             services.Configure<ApplicationDbSettings>(configuration.GetSection("ApplicationDbSettings"));
 

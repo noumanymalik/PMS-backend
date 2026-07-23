@@ -320,6 +320,123 @@ namespace PMS.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CallLogs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    FromPhoneNo = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ToPhoneNo = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    InternetType = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    DispositionInternalId = table.Column<int>(type: "int", nullable: false),
+                    Disposition = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    FullRecording = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    QaAgentInternalId = table.Column<int>(type: "int", nullable: true),
+                    QaAgent = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    AgentNotes = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    OfferInternalId = table.Column<int>(type: "int", nullable: false),
+                    Offer = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    IaPowerDialerFlow = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CallRouterInstantAgent = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    BuyerInternalId = table.Column<int>(type: "int", nullable: false),
+                    Buyer = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    AgentTime = table.Column<int>(type: "int", nullable: false),
+                    ForwardedTime = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
+                    HangupReason = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    HoldTime = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
+                    State = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
+                    DateArchived = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CallLogs", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CallLogs_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employee",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CallSummaryAll",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    TotalCalls = table.Column<int>(type: "int", nullable: false),
+                    RegisteredTime = table.Column<int>(type: "int", nullable: false),
+                    AgentTimestampPausedBreak = table.Column<int>(type: "int", nullable: false),
+                    TimestampManualDial = table.Column<int>(type: "int", nullable: false),
+                    AgentTimestampTraining = table.Column<int>(type: "int", nullable: false),
+                    AgentTimestampWaitingForAgent = table.Column<int>(type: "int", nullable: false),
+                    AgentTimestampWaitingForDisposition = table.Column<int>(type: "int", nullable: false),
+                    BillableTotal = table.Column<int>(type: "int", nullable: false),
+                    UnbillableTotal = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
+                    DateArchived = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CallSummaryAll", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CallSummaryAll_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employee",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CallSummaryInbound",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    TotalCalls = table.Column<int>(type: "int", nullable: false),
+                    RegisteredTime = table.Column<int>(type: "int", nullable: false),
+                    AgentTimestampPausedBreak = table.Column<int>(type: "int", nullable: false),
+                    TimestampManualDial = table.Column<int>(type: "int", nullable: false),
+                    AgentTimestampTraining = table.Column<int>(type: "int", nullable: false),
+                    AgentTimestampWaitingForAgent = table.Column<int>(type: "int", nullable: false),
+                    AgentTimestampWaitingForDisposition = table.Column<int>(type: "int", nullable: false),
+                    BillableTotal = table.Column<int>(type: "int", nullable: false),
+                    UnbillableTotal = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
+                    DateArchived = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CallSummaryInbound", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CallSummaryInbound_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employee",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CorrectiveAction",
                 columns: table => new
                 {
@@ -444,6 +561,38 @@ namespace PMS.Persistence.Migrations
                         name: "FK_Rota_Shift_ShiftId",
                         column: x => x.ShiftId,
                         principalTable: "Shift",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sales",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    CustomerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CallerId = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    OCN = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Provider = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    RGU = table.Column<int>(type: "int", nullable: false),
+                    Portal = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
+                    DateArchived = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sales", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Sales_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employee",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -615,6 +764,21 @@ namespace PMS.Persistence.Migrations
                 column: "CalenderMonthId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CallLogs_EmployeeId",
+                table: "CallLogs",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CallSummaryAll_EmployeeId",
+                table: "CallSummaryAll",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CallSummaryInbound_EmployeeId",
+                table: "CallSummaryInbound",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CorrectiveAction_EmployeeId",
                 table: "CorrectiveAction",
                 column: "EmployeeId");
@@ -660,6 +824,11 @@ namespace PMS.Persistence.Migrations
                 column: "ShiftId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Sales_EmployeeId",
+                table: "Sales",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
                 table: "Users",
                 column: "Email",
@@ -685,6 +854,15 @@ namespace PMS.Persistence.Migrations
                 name: "AuditLogs");
 
             migrationBuilder.DropTable(
+                name: "CallLogs");
+
+            migrationBuilder.DropTable(
+                name: "CallSummaryAll");
+
+            migrationBuilder.DropTable(
+                name: "CallSummaryInbound");
+
+            migrationBuilder.DropTable(
                 name: "CorrectiveAction");
 
             migrationBuilder.DropTable(
@@ -698,6 +876,9 @@ namespace PMS.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Rota");
+
+            migrationBuilder.DropTable(
+                name: "Sales");
 
             migrationBuilder.DropTable(
                 name: "Users");

@@ -28,11 +28,15 @@ namespace PMS.Persistence.Repositories
         public IRolePermissionRepository RolePermissionRepository { get; set; }
         public ILoanRepository LoanRepository { get; set; }
         public ICorrectiveActionRepository CorrectiveActionRepository { get; set; }
+        public ICallLogsRepository CallLogsRepository { get; set; }
+        public ICallSummaryAllRepository CallSummaryAllRepository { get; set; }
+        public ICallSummaryInboundRepository CallSummaryInboundRepository { get; set; }
+        public ISalesRepository SalesRepository { get; set; }
 
         public UnitOfWork(ApplicationDbContext dbContext, ICalenderDateRepository dateRepo, ICalenderWeekRepository weekRepo, ICalenderMonthRepository monthRepo, ICalenderYearRepository yearRepo, IRotaRepository rotaRepo,
                 IEmployeeRepository empRepo, IShifRepository shiftRepo, IDepartmentRepository deptRepo, IDesignationRepository desgRepo, ILeaveRepository leaveRepo,
-                IUserRepository UserRepo, IRoleRepository RoleRepo, IPermissionRepository permissionRepo, IRolePermissionRepository rolePermissionRepo, ILoanRepository loanRepo, ICorrectiveActionRepository correctiveActionRepo
-
+                IUserRepository UserRepo, IRoleRepository RoleRepo, IPermissionRepository permissionRepo, IRolePermissionRepository rolePermissionRepo, ILoanRepository loanRepo, ICorrectiveActionRepository correctiveActionRepo,
+                ICallLogsRepository callLogRepo, ICallSummaryAllRepository callSummaryAllRepo, ICallSummaryInboundRepository callSummaryInboundRepo, ISalesRepository salesRepo
 
             )
         {
@@ -53,6 +57,10 @@ namespace PMS.Persistence.Repositories
             RolePermissionRepository = rolePermissionRepo;
             LoanRepository = loanRepo;
             CorrectiveActionRepository = correctiveActionRepo;
+            CallLogsRepository = callLogRepo;
+            CallSummaryAllRepository = callSummaryAllRepo;
+            CallSummaryInboundRepository = callSummaryInboundRepo;
+            SalesRepository = salesRepo;
         }
 
         public void Dispose()
