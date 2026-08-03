@@ -106,6 +106,14 @@
         Escalation
     }
 
+    public enum Cancellation
+    {
+        Cancelled = 1,
+        Approved,
+        Rejected,
+        Revert
+    }
+
     public enum Permission
     {
         User_Management = 1,

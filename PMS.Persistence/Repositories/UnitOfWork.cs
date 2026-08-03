@@ -32,11 +32,12 @@ namespace PMS.Persistence.Repositories
         public ICallSummaryAllRepository CallSummaryAllRepository { get; set; }
         public ICallSummaryInboundRepository CallSummaryInboundRepository { get; set; }
         public ISalesRepository SalesRepository { get; set; }
+        public ICancellationRepository CancellationRepository { get; set; }
 
         public UnitOfWork(ApplicationDbContext dbContext, ICalenderDateRepository dateRepo, ICalenderWeekRepository weekRepo, ICalenderMonthRepository monthRepo, ICalenderYearRepository yearRepo, IRotaRepository rotaRepo,
                 IEmployeeRepository empRepo, IShifRepository shiftRepo, IDepartmentRepository deptRepo, IDesignationRepository desgRepo, ILeaveRepository leaveRepo,
                 IUserRepository UserRepo, IRoleRepository RoleRepo, IPermissionRepository permissionRepo, IRolePermissionRepository rolePermissionRepo, ILoanRepository loanRepo, ICorrectiveActionRepository correctiveActionRepo,
-                ICallLogsRepository callLogRepo, ICallSummaryAllRepository callSummaryAllRepo, ICallSummaryInboundRepository callSummaryInboundRepo, ISalesRepository salesRepo
+                ICallLogsRepository callLogRepo, ICallSummaryAllRepository callSummaryAllRepo, ICallSummaryInboundRepository callSummaryInboundRepo, ISalesRepository salesRepo, ICancellationRepository cancellationRepo
 
             )
         {
@@ -61,6 +62,7 @@ namespace PMS.Persistence.Repositories
             CallSummaryAllRepository = callSummaryAllRepo;
             CallSummaryInboundRepository = callSummaryInboundRepo;
             SalesRepository = salesRepo;
+            CancellationRepository = cancellationRepo;
         }
 
         public void Dispose()

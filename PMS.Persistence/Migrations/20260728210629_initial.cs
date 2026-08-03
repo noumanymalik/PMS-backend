@@ -654,6 +654,41 @@ namespace PMS.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SalesCancellation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    SalesId = table.Column<int>(type: "int", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    Remarks = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
+                    CancelStatus = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
+                    DateArchived = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SalesCancellation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SalesCancellation_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employee",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SalesCancellation_Sales_SalesId",
+                        column: x => x.SalesId,
+                        principalTable: "Sales",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ApplicationUserRole",
                 columns: table => new
                 {
@@ -829,6 +864,17 @@ namespace PMS.Persistence.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SalesCancellation_EmployeeId",
+                table: "SalesCancellation",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SalesCancellation_SalesId",
+                table: "SalesCancellation",
+                column: "SalesId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
                 table: "Users",
                 column: "Email",
@@ -878,7 +924,7 @@ namespace PMS.Persistence.Migrations
                 name: "Rota");
 
             migrationBuilder.DropTable(
-                name: "Sales");
+                name: "SalesCancellation");
 
             migrationBuilder.DropTable(
                 name: "Users");
@@ -899,19 +945,22 @@ namespace PMS.Persistence.Migrations
                 name: "Shift");
 
             migrationBuilder.DropTable(
-                name: "Employee");
+                name: "Sales");
 
             migrationBuilder.DropTable(
                 name: "CalenderWeek");
+
+            migrationBuilder.DropTable(
+                name: "Employee");
+
+            migrationBuilder.DropTable(
+                name: "CalenderMonth");
 
             migrationBuilder.DropTable(
                 name: "Department");
 
             migrationBuilder.DropTable(
                 name: "Designation");
-
-            migrationBuilder.DropTable(
-                name: "CalenderMonth");
 
             migrationBuilder.DropTable(
                 name: "CalenderYear");

@@ -1,4 +1,5 @@
 ﻿using PMS.Domain.Entities.Base;
+using PMS.Domain.Entities.Quality;
 using PMS.Domain.Entities.Staff;
 
 namespace PMS.Domain.Entities.Import
@@ -14,5 +15,6 @@ namespace PMS.Domain.Entities.Import
         public int RGU { get; set; }
         public string Portal { get; set; }
         public Employee Employee { get; set; }
+        public SalesCancellation SalesCancellation { get; set; }
     }
 }

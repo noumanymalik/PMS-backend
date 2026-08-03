@@ -824,6 +824,59 @@ namespace PMS.Persistence.Migrations
                     b.ToTable("Legend");
                 });
 
+            modelBuilder.Entity("PMS.Domain.Entities.Quality.SalesCancellation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CancelStatus")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateArchived")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsArchived")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Remarks")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<int>("SalesId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("SalesId")
+                        .IsUnique();
+
+                    b.ToTable("SalesCancellation");
+                });
+
             modelBuilder.Entity("PMS.Domain.Entities.Shedule.Rota", b =>
                 {
                     b.Property<int>("Id")
@@ -1492,6 +1545,25 @@ namespace PMS.Persistence.Migrations
                     b.Navigation("Shift");
                 });
 
+            modelBuilder.Entity("PMS.Domain.Entities.Quality.SalesCancellation", b =>
+                {
+                    b.HasOne("PMS.Domain.Entities.Staff.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PMS.Domain.Entities.Import.Sales", "Sales")
+                        .WithOne("SalesCancellation")
+                        .HasForeignKey("PMS.Domain.Entities.Quality.SalesCancellation", "SalesId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Sales");
+                });
+
             modelBuilder.Entity("PMS.Domain.Entities.Shedule.Rota", b =>
                 {
                     b.HasOne("PMS.Domain.Entities.Staff.Employee", "Employee")
@@ -1571,6 +1643,12 @@ namespace PMS.Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PMS.Domain.Entities.Import.Sales", b =>
+                {
+                    b.Navigation("SalesCancellation")
                         .IsRequired();
                 });
 

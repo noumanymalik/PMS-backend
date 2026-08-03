@@ -2,8 +2,6 @@
 using MediatR;
 using PMS.Application.Interfaces.Repositories;
 using PMS.Application.Wrappers.Response;
-using PMS.Domain.Entities.Import;
-using System.Numerics;
 using System.Text.RegularExpressions;
 
 namespace PMS.Application.Features.Imports.Commands.ImportSales
@@ -46,7 +44,7 @@ namespace PMS.Application.Features.Imports.Commands.ImportSales
 
                 foreach (var item in sales.Sales)
                 {
-                    Sales sale = new Sales();
+                    PMS.Domain.Entities.Import.Sales sale = new PMS.Domain.Entities.Import.Sales();
                     int empId = await _unitOfWork.EmployeeRepository.GetIdByEmployeeNameAsync(item.AgentName, cancellationToken);
 
                     if (empId != 0)

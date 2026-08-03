@@ -19,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Cancellation\Queries\" />
     <Folder Include="Features\Lookups\Queries\GetEmployees\" />
+    <Folder Include="Features\Sales\Commands\" />
     <Folder Include="Interfaces\Application\" />
   </ItemGroup>
 

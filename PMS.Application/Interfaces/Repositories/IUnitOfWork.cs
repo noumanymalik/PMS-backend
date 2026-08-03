@@ -26,6 +26,7 @@ namespace PMS.Application.Interfaces.Repositories
         public ICallSummaryAllRepository CallSummaryAllRepository { get; set; }
         public ICallSummaryInboundRepository CallSummaryInboundRepository { get; set; }
         public ISalesRepository SalesRepository { get; set; }
+        public ICancellationRepository CancellationRepository  { get; set; }
 
         Task BeginTransactionAsync();
         Task CommitTransactionAsync();

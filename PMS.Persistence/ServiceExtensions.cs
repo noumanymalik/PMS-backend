@@ -44,7 +44,8 @@ namespace PMS.Persistence
                    .AddScoped<ICallLogsRepository, CallLogsRepository>()
                    .AddScoped<ICallSummaryAllRepository, CallSummaryAllRepository>()
                    .AddScoped<ICallSummaryInboundRepository, CallSummaryInboundRepository>()
-                   .AddScoped<ISalesRepository, SalesRepository>();
+                   .AddScoped<ISalesRepository, SalesRepository>()
+                   .AddScoped<ICancellationRepository, CancellationRepository>();
 
             services.Configure<ApplicationDbSettings>(configuration.GetSection("ApplicationDbSettings"));
 

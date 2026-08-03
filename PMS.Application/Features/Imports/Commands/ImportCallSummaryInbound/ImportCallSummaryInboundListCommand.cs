@@ -79,7 +79,7 @@ namespace PMS.Application.Features.Imports.Commands.ImportCallSummaryInbound
 
             await _unitOfWork.CommitTransactionAsync();
 
-            return await Response<int>.SuccessAsync("Shedule created");
+            return await Response<int>.SuccessAsync("Import Call Summary");
 
         }
     }
