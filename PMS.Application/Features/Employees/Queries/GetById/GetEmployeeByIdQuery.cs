@@ -11,12 +11,12 @@ namespace PMS.Application.Features.Employees.Queries.GetById
         public int Id { get; set; }
     }
 
-    internal class GetVendorByIdQueryHandler : IRequestHandler<GetEmployeeByIdQuery, GetEmployeeByIdResponse>
+    internal class GetEmployeeByIdQueryHandler : IRequestHandler<GetEmployeeByIdQuery, GetEmployeeByIdResponse>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public GetVendorByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public GetEmployeeByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
