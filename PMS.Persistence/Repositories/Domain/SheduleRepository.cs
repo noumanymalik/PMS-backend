@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using PMS.Application.Interfaces.Repositories.DomainRepositories;
+using PMS.Domain.Entities.Reporting;
 using PMS.Domain.Entities.Shedule;
 using PMS.Persistence.Context;
 

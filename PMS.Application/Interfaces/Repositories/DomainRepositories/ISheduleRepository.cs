@@ -1,4 +1,5 @@
 ﻿using PMS.Domain.Entities.Base.Interfaces;
+using PMS.Domain.Entities.Reporting;
 using PMS.Domain.Entities.Shedule;
 
 namespace PMS.Application.Interfaces.Repositories.DomainRepositories

@@ -28,6 +28,8 @@ namespace PMS.Application.Interfaces.Repositories
         public ISalesRepository SalesRepository { get; set; }
         public ICancellationRepository CancellationRepository  { get; set; }
 
+        public IReportRepository ReportRepository { get; set; }
+
         Task BeginTransactionAsync();
         Task CommitTransactionAsync();
         Task RollbackTransactionAsync();

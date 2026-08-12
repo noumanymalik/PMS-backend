@@ -12,7 +12,7 @@ using PMS.Persistence.Context;
 namespace PMS.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260728210629_initial")]
+    [Migration("20260807180547_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -878,6 +878,44 @@ namespace PMS.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("SalesCancellation");
+                });
+
+            modelBuilder.Entity("PMS.Domain.Entities.Reporting.ReportResultTriumvirateTangoOfTelephony", b =>
+                {
+                    b.Property<int>("AgentTime")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BTN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ForwardedTime")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IN")
+                        .HasColumnType("int");
+
+                    b.Property<string>("InternetType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Names")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OUT")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalXFRS")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Valid")
+                        .HasColumnType("int");
+
+                    b.ToTable("ReportResultTriumvirateTangoOfTelephony");
                 });
 
             modelBuilder.Entity("PMS.Domain.Entities.Shedule.Rota", b =>

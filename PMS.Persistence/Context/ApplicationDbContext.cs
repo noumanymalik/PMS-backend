@@ -6,12 +6,14 @@ using PMS.Domain.Entities.Auditing;
 using PMS.Domain.Entities.Base.Interfaces;
 using PMS.Domain.Entities.Loan;
 using PMS.Domain.Entities.Period;
+using PMS.Domain.Entities.Reporting;
 using PMS.Domain.Entities.Shedule;
 using PMS.Domain.Entities.Staff;
 using PMS.Domain.Entities.Users;
 using PMS.Persistence.Extensions;
 using PMS.Persistence.Models;
 using PMS.Persistence.Settings;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PMS.Persistence.Context
 {
@@ -49,8 +51,8 @@ namespace PMS.Persistence.Context
 
 
 
-        //[NotMapped]
-        //public DbSet<ReportResultJournalVoucher> ReportResultJournalVoucher { get; set; }
+        [NotMapped]
+        public DbSet<ReportResultTriumvirateTangoOfTelephony> ReportResultTriumvirateTangoOfTelephony { get; set; }
 
         public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
         public DbSet<CalenderYear> CalenderYear => Set<CalenderYear>();
@@ -69,6 +71,7 @@ namespace PMS.Persistence.Context
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<RolePermission> RolePermissions { get; set; }
+
 
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

@@ -129,6 +129,25 @@ namespace PMS.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ReportResultTriumvirateTangoOfTelephony",
+                columns: table => new
+                {
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IN = table.Column<int>(type: "int", nullable: false),
+                    OUT = table.Column<int>(type: "int", nullable: false),
+                    Names = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BTN = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InternetType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AgentTime = table.Column<int>(type: "int", nullable: false),
+                    ForwardedTime = table.Column<int>(type: "int", nullable: false),
+                    TotalXFRS = table.Column<int>(type: "int", nullable: false),
+                    Valid = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
@@ -916,6 +935,9 @@ namespace PMS.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Loan");
+
+            migrationBuilder.DropTable(
+                name: "ReportResultTriumvirateTangoOfTelephony");
 
             migrationBuilder.DropTable(
                 name: "RolePermissions");
