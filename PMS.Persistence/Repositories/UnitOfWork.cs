@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using PMS.Application.Interfaces.Repositories;
 using PMS.Application.Interfaces.Repositories.DomainRepositories;
 using PMS.Persistence.Context;
+using PMS.Persistence.Repositories.Domain;
 using System.Data;
 
 namespace PMS.Persistence.Repositories
@@ -33,12 +34,16 @@ namespace PMS.Persistence.Repositories
         public ICallSummaryInboundRepository CallSummaryInboundRepository { get; set; }
         public ISalesRepository SalesRepository { get; set; }
         public ICancellationRepository CancellationRepository { get; set; }
+        public ITransportSheduleRepository TransportSheduleRepository { get; set; }
+        public IVehicleRepository VehicleRepository { get; set; }
+        public ITransportRegisterRepository TransportRegisterRepository { get; set; }
         public IReportRepository ReportRepository { get; set; }
 
         public UnitOfWork(ApplicationDbContext dbContext, ICalenderDateRepository dateRepo, ICalenderWeekRepository weekRepo, ICalenderMonthRepository monthRepo, ICalenderYearRepository yearRepo, IRotaRepository rotaRepo,
                 IEmployeeRepository empRepo, IShifRepository shiftRepo, IDepartmentRepository deptRepo, IDesignationRepository desgRepo, ILeaveRepository leaveRepo,
                 IUserRepository UserRepo, IRoleRepository RoleRepo, IPermissionRepository permissionRepo, IRolePermissionRepository rolePermissionRepo, ILoanRepository loanRepo, ICorrectiveActionRepository correctiveActionRepo,
                 ICallLogsRepository callLogRepo, ICallSummaryAllRepository callSummaryAllRepo, ICallSummaryInboundRepository callSummaryInboundRepo, ISalesRepository salesRepo, ICancellationRepository cancellationRepo,
+                ITransportRegisterRepository transportRegisterRepo, IVehicleRepository vehicleRepo, ITransportSheduleRepository transportSheduleRepo,
                 IReportRepository ReportRepo
 
             )
@@ -65,6 +70,9 @@ namespace PMS.Persistence.Repositories
             CallSummaryInboundRepository = callSummaryInboundRepo;
             SalesRepository = salesRepo;
             CancellationRepository = cancellationRepo;
+            TransportSheduleRepository = transportSheduleRepo;
+            VehicleRepository = vehicleRepo;
+            TransportRegisterRepository = transportRegisterRepo;
             ReportRepository = ReportRepo;
         }
 

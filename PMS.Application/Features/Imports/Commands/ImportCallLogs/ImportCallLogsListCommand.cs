@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using PMS.Application.Interfaces.Repositories;
 using PMS.Application.Wrappers.Response;
 using PMS.Domain.Entities.Import;
@@ -42,27 +43,33 @@ namespace PMS.Application.Features.Imports.Commands.ImportCallLogs
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly ILogger<ImportCallLogsListCommandHandler> _logger;
 
-        public ImportCallLogsListCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public ImportCallLogsListCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ILogger<ImportCallLogsListCommandHandler> logger)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _logger = logger;
         }
+
         public async Task<Response<int>> Handle(ImportCallLogsListCommand request, CancellationToken cancellationToken)
         {
-            var callLogs = request;
-
-            await _unitOfWork.BeginTransactionAsync();
             try
             {
-                DateTime dt = request.CallLogs.First().CreateDate;
-                //await _unitOfWork.CallLogsRepository.DeleteRotaByDateAsync(dt);
+                await _unitOfWork.BeginTransactionAsync();
 
-                foreach (var item in callLogs.CallLogs)
+                DateTime dt = request.CallLogs.First().CreateDate;
+
+                foreach (var item in request.CallLogs)
                 {
                     CallLogs callLog = new CallLogs();
 
-                    int empId = await _unitOfWork.EmployeeRepository.GetIdByEmployeeNameAsync(item.AgentFirstName + ' ' + item.AgentLastName, cancellationToken);
+                    string firstName = Common.RemoveCharacters.RemoveSpecialCharacters(item.AgentFirstName);
+                    string lastName = Common.RemoveCharacters.RemoveSpecialCharacters(item.AgentLastName);
+
+                    string employeeName = $"{firstName} {lastName}".Trim();
+
+                    int empId = await _unitOfWork.EmployeeRepository.GetIdByEmployeeNameAsync(employeeName, cancellationToken);
 
                     if (empId != 0)
                     {
@@ -70,16 +77,28 @@ namespace PMS.Application.Features.Imports.Commands.ImportCallLogs
                         callLog.EmployeeId = empId;
                         callLog.Category = item.Category;
 
-                        if (item.FromPhoneNo.Length == 11 && item.FromPhoneNo.StartsWith("1"))
-                        { callLog.FromPhoneNo = item.FromPhoneNo.Substring(1); }
-
-                        if (item.ToPhoneNo.Length == 11 && item.ToPhoneNo.StartsWith("1"))
-                        { 
-                            callLog.ToPhoneNo = item.ToPhoneNo.Substring(1); 
-                        }
-                        else
+                        if (!string.IsNullOrEmpty(item.FromPhoneNo))
                         {
-                            callLog.ToPhoneNo = item.ToPhoneNo;
+                            if (item.FromPhoneNo.Length == 11 && item.FromPhoneNo.StartsWith("1"))
+                            {
+                                callLog.FromPhoneNo = item.FromPhoneNo.Substring(1);
+                            }
+                            else
+                            {
+                                callLog.FromPhoneNo = item.FromPhoneNo;
+                            }
+                        }
+
+                        if (!string.IsNullOrEmpty(item.ToPhoneNo))
+                        {
+                            if (item.ToPhoneNo.Length == 11 && item.ToPhoneNo.StartsWith("1"))
+                            {
+                                callLog.ToPhoneNo = item.ToPhoneNo.Substring(1);
+                            }
+                            else
+                            {
+                                callLog.ToPhoneNo = item.ToPhoneNo;
+                            }
                         }
 
                         callLog.InternetType = item.InternetType;
@@ -106,18 +125,21 @@ namespace PMS.Application.Features.Imports.Commands.ImportCallLogs
                 }
 
                 await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+                await _unitOfWork.CommitTransactionAsync();
+
+                return await Response<int>.SuccessAsync("Import Call Logs");
             }
-            catch
+            catch (Exception ex)
             {
                 await _unitOfWork.RollbackTransactionAsync();
+
+                _logger.LogError(ex, "Error occurred while importing Call Logs.");
+
                 throw;
             }
-
-
-            await _unitOfWork.CommitTransactionAsync();
-
-            return await Response<int>.SuccessAsync("Import Call Logs");
-
         }
     }
+
 }
+

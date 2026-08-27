@@ -27,6 +27,9 @@ namespace PMS.Application.Interfaces.Repositories
         public ICallSummaryInboundRepository CallSummaryInboundRepository { get; set; }
         public ISalesRepository SalesRepository { get; set; }
         public ICancellationRepository CancellationRepository  { get; set; }
+        public ITransportSheduleRepository TransportSheduleRepository { get; set; }
+        public IVehicleRepository VehicleRepository { get; set; }
+        public ITransportRegisterRepository TransportRegisterRepository { get; set; }
 
         public IReportRepository ReportRepository { get; set; }
 

@@ -22,6 +22,7 @@
   <ItemGroup>
     <Folder Include="Features\Lookups\Queries\GetEmployees\" />
     <Folder Include="Features\Sales\Commands\" />
+    <Folder Include="Features\Vehicles\Commands\Update\" />
     <Folder Include="Interfaces\Application\" />
   </ItemGroup>
 

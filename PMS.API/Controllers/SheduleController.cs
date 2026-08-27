@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PMS.Application.Features.Shedules.Commands.Create;
-using static PMS.Application.Features.Shedules.Commands.Create.CreateRotaListCommand;
 
 namespace PMS.API.Controllers
 {
