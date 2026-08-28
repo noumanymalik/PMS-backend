@@ -20,9 +20,6 @@ namespace PMS.Application.Features.TransportShedules.Commands.Create
 
             RuleFor(x => x.EndDate)
             .NotEmpty().WithMessage("{PropertyName} is required.");
-
-            RuleFor(x => x.Amount)
-            .NotEmpty().WithMessage("{PropertyName} is required.");
         }
     }
 }

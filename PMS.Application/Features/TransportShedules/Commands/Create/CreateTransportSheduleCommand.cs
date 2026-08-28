@@ -14,7 +14,6 @@ namespace PMS.Application.Features.TransportShedules.Commands.Create
         public int VehicleId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public decimal Amount { get; set; }
     }
 
     public class CreateTransportSheduleCommandHandler : IRequestHandler<CreateTransportSheduleCommand, Response<int>>

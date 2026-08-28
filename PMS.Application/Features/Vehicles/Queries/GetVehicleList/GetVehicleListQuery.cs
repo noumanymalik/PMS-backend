@@ -23,19 +23,19 @@ namespace PMS.Application.Features.Vehicles.Queries.GetVehicleList
 
         public async Task<IPagedListResponse<GetVehicleListResponse>> Handle(GetVehicleListQuery request, CancellationToken cancellationToken)
         {
-            var designations = await _unitOfWork.DesignationRepository.GetAllAsQueryable();
+            var vehicles = await _unitOfWork.VehicleRepository.GetAllAsQueryable();
 
             #region Ordering
-            designations = designations.SystemOrderBy(orderBy: request.OrderBy, direction: request.OrderDirection);
+            vehicles = vehicles.SystemOrderBy(orderBy: request.OrderBy, direction: request.OrderDirection);
             #endregion
 
             #region Paging
-            var designationPageList = designations.Skip((request.PageIndex - 1) * request.PageSize).Take(request.PageSize);
+            var vehiclePageList = vehicles.Skip((request.PageIndex - 1) * request.PageSize).Take(request.PageSize);
             #endregion
 
-            var departmentsListDto = _mapper.Map<IReadOnlyList<GetVehicleListResponse>>(designationPageList);
+            var vehiclesListDto = _mapper.Map<IReadOnlyList<GetVehicleListResponse>>(vehiclePageList);
 
-            return new PagedListResponse<GetVehicleListResponse>(request, designations.Count(), departmentsListDto);
+            return new PagedListResponse<GetVehicleListResponse>(request, vehicles.Count(), vehiclesListDto);
         }
     }
 }
