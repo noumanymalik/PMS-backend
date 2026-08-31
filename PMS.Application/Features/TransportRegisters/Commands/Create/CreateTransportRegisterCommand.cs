@@ -8,8 +8,8 @@ namespace PMS.Application.Features.TransportRegisters.Commands.Create
 {
     public class CreateTransportRegisterCommand : IRequest<Response<int>>
     {
-        public int VehicleId { get; set; }
         public DateTime Date { get; set; }
+        public int VehicleId { get; set; }
         public TimeOnly InTime { get; set; }
     }
 

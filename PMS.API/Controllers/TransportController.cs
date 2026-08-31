@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PMS.Application.Features.Designations.Queries.GetList;
 using PMS.Application.Features.TransportRegisters.Commands.Create;
 using PMS.Application.Features.TransportRegisters.Queries.GetList;
 using PMS.Application.Features.TransportShedules.Commands.Create;
 using PMS.Application.Features.TransportShedules.Queries.GetList;
 using PMS.Application.Features.Vehicles.Commands.Create;
+using PMS.Application.Features.Vehicles.Queries.GetAll;
 using PMS.Application.Features.Vehicles.Queries.GetVehicleList;
 
 namespace PMS.API.Controllers
@@ -26,6 +26,11 @@ namespace PMS.API.Controllers
         [Route("[action]")]
         public async Task<ActionResult> GetVehicleList([FromQuery] GetVehicleListQuery query)
             => Ok(await _mediator.Send(query));
+
+        [HttpGet]
+        [Route("GetAllVehicle")]
+        public async Task<ActionResult<List<GetAllVehicleRersponse>>> GetAllVehicle(CancellationToken cancellationToken)
+            => Ok(await _mediator.Send(new GetAllVehicleQuery()));
 
         [HttpPost]
         [Route("[action]")]
