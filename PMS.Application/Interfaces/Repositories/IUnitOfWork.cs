@@ -30,6 +30,8 @@ namespace PMS.Application.Interfaces.Repositories
         public ITransportSheduleRepository TransportSheduleRepository { get; set; }
         public IVehicleRepository VehicleRepository { get; set; }
         public ITransportRegisterRepository TransportRegisterRepository { get; set; }
+        public IAttendanceRepository AttendanceRepository { get; set; }
+        public ILegendRepository LegendRepository { get; set; }
 
         public IReportRepository ReportRepository { get; set; }
 

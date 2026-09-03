@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PMS.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class intial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -385,6 +385,40 @@ namespace PMS.Persistence.Migrations
                         name: "FK_CalenderWeek_CalenderMonth_CalenderMonthId",
                         column: x => x.CalenderMonthId,
                         principalTable: "CalenderMonth",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Attendance",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AttendanceDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    LegendId = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
+                    DateArchived = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Attendance", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Attendance_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employee",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Attendance_Legend_LegendId",
+                        column: x => x.LegendId,
+                        principalTable: "Legend",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -817,61 +851,10 @@ namespace PMS.Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Attendance",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    LegendId = table.Column<int>(type: "int", nullable: false),
-                    ShiftId = table.Column<int>(type: "int", nullable: false),
-                    CalenderDateId = table.Column<int>(type: "int", nullable: false),
-                    CreatedBy = table.Column<int>(type: "int", nullable: true),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
-                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
-                    DateArchived = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Attendance", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Attendance_CalenderDate_CalenderDateId",
-                        column: x => x.CalenderDateId,
-                        principalTable: "CalenderDate",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Attendance_Employee_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalTable: "Employee",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Attendance_Legend_LegendId",
-                        column: x => x.LegendId,
-                        principalTable: "Legend",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Attendance_Shift_ShiftId",
-                        column: x => x.ShiftId,
-                        principalTable: "Shift",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_ApplicationUserRole_UsersId",
                 table: "ApplicationUserRole",
                 column: "UsersId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Attendance_CalenderDateId",
-                table: "Attendance",
-                column: "CalenderDateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Attendance_EmployeeId",
@@ -882,11 +865,6 @@ namespace PMS.Persistence.Migrations
                 name: "IX_Attendance_LegendId",
                 table: "Attendance",
                 column: "LegendId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Attendance_ShiftId",
-                table: "Attendance",
-                column: "ShiftId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CalenderDate_CalenderWeekId",
@@ -1020,6 +998,9 @@ namespace PMS.Persistence.Migrations
                 name: "AuditLogs");
 
             migrationBuilder.DropTable(
+                name: "CalenderDate");
+
+            migrationBuilder.DropTable(
                 name: "CallLogs");
 
             migrationBuilder.DropTable(
@@ -1059,10 +1040,10 @@ namespace PMS.Persistence.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "CalenderDate");
+                name: "Legend");
 
             migrationBuilder.DropTable(
-                name: "Legend");
+                name: "CalenderWeek");
 
             migrationBuilder.DropTable(
                 name: "Permissions");
@@ -1080,22 +1061,19 @@ namespace PMS.Persistence.Migrations
                 name: "Vehicle");
 
             migrationBuilder.DropTable(
-                name: "CalenderWeek");
+                name: "CalenderMonth");
 
             migrationBuilder.DropTable(
                 name: "Employee");
 
             migrationBuilder.DropTable(
-                name: "CalenderMonth");
+                name: "CalenderYear");
 
             migrationBuilder.DropTable(
                 name: "Department");
 
             migrationBuilder.DropTable(
                 name: "Designation");
-
-            migrationBuilder.DropTable(
-                name: "CalenderYear");
         }
     }
 }

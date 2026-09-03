@@ -9,6 +9,7 @@ namespace PMS.Application.Interfaces.Repositories.DomainRepositories
         public Task<string?> GetEmployeeCodeByEmployeeId(int employeeId, CancellationToken cancellationToken = default);
         public Task<List<Employee>> GetAllSupervisor(CancellationToken cancellationToken = default);
         public Task<List<Employee>> GetBySupervisorId(int SupervisorId, CancellationToken cancellationToken = default);
+        public Task<List<Employee>> GetByDepartmentId(int departmentId, CancellationToken cancellationToken = default);
 
     }
 

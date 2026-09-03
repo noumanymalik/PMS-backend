@@ -12,8 +12,8 @@ using PMS.Persistence.Context;
 namespace PMS.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260827165505_initial")]
-    partial class initial
+    [Migration("20260903171334_intial")]
+    partial class intial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -738,8 +738,11 @@ namespace PMS.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CalenderDateId")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("AttendanceDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
@@ -762,21 +765,14 @@ namespace PMS.Persistence.Migrations
                     b.Property<int>("LegendId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ShiftId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("UpdatedBy")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CalenderDateId");
-
                     b.HasIndex("EmployeeId");
 
                     b.HasIndex("LegendId");
-
-                    b.HasIndex("ShiftId");
 
                     b.ToTable("Attendance");
                 });
@@ -1706,12 +1702,6 @@ namespace PMS.Persistence.Migrations
 
             modelBuilder.Entity("PMS.Domain.Entities.Presence.Attendance", b =>
                 {
-                    b.HasOne("PMS.Domain.Entities.Period.CalenderDate", "CalenderDate")
-                        .WithMany()
-                        .HasForeignKey("CalenderDateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("PMS.Domain.Entities.Staff.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")
@@ -1724,19 +1714,9 @@ namespace PMS.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PMS.Domain.Entities.Shedule.Shift", "Shift")
-                        .WithMany()
-                        .HasForeignKey("ShiftId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CalenderDate");
-
                     b.Navigation("Employee");
 
                     b.Navigation("Legend");
-
-                    b.Navigation("Shift");
                 });
 
             modelBuilder.Entity("PMS.Domain.Entities.Quality.SalesCancellation", b =>

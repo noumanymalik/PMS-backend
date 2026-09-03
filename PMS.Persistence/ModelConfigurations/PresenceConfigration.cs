@@ -9,7 +9,10 @@ namespace PMS.Persistence.ModelConfigurations
     {
         public void Configure(EntityTypeBuilder<Attendance> builder)
         {
-
+            builder.Property(x => x.CreateDate);
+            builder.Property(x => x.AttendanceDate);
+            builder.Property(x => x.EmployeeId).HasColumnType("int");
+            builder.Property(x => x.LegendId).HasColumnType("int");
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PMS.Application.Common.Models;
+using PMS.Application.Features.Lookups.Queries.GetEmployeesByDepartmentId;
 using PMS.Application.Features.Lookups.Queries.GetEnumValues;
 using PMS.Application.Features.Lookups.Queries.GetMonths;
 using PMS.Application.Features.Lookups.Queries.GetWeeks;
@@ -40,6 +41,10 @@ namespace PMS.API.Controllers
         public async Task<ActionResult<List<GetEnumValuesResponse>>> GetCorrectiveActionReason()
             => Ok(await _mediator.Send(new GetEnumValuesQuery { TypeOfEnum = GetEnumValuesQuery.EnumType.Action, NameOfEnum = "PMS.Domain.Enums.ActionReason, PMS.Domain" }));
 
+        [HttpGet]
+        [Route("GetEmployeeByDepartmentId")]
+        public async Task<ActionResult<List<LookupDto>>> GetEmployeeByDepartmnetId([FromQuery] GetEmployeesByDepartmentIdQuery query, CancellationToken cancellationToken)
+            => Ok(await _mediator.Send(query));
 
         [HttpGet]
         [Route("GetMonths")]

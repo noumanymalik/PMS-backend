@@ -37,6 +37,8 @@ namespace PMS.Persistence.Repositories
         public ITransportSheduleRepository TransportSheduleRepository { get; set; }
         public IVehicleRepository VehicleRepository { get; set; }
         public ITransportRegisterRepository TransportRegisterRepository { get; set; }
+        public IAttendanceRepository AttendanceRepository { get; set; }
+        public ILegendRepository LegendRepository { get; set; }
         public IReportRepository ReportRepository { get; set; }
 
         public UnitOfWork(ApplicationDbContext dbContext, ICalenderDateRepository dateRepo, ICalenderWeekRepository weekRepo, ICalenderMonthRepository monthRepo, ICalenderYearRepository yearRepo, IRotaRepository rotaRepo,
@@ -44,7 +46,7 @@ namespace PMS.Persistence.Repositories
                 IUserRepository UserRepo, IRoleRepository RoleRepo, IPermissionRepository permissionRepo, IRolePermissionRepository rolePermissionRepo, ILoanRepository loanRepo, ICorrectiveActionRepository correctiveActionRepo,
                 ICallLogsRepository callLogRepo, ICallSummaryAllRepository callSummaryAllRepo, ICallSummaryInboundRepository callSummaryInboundRepo, ISalesRepository salesRepo, ICancellationRepository cancellationRepo,
                 ITransportRegisterRepository transportRegisterRepo, IVehicleRepository vehicleRepo, ITransportSheduleRepository transportSheduleRepo,
-                IReportRepository ReportRepo
+                IAttendanceRepository attendanceRepo, ILegendRepository legendRepo ,IReportRepository ReportRepo
 
             )
         {
@@ -73,6 +75,8 @@ namespace PMS.Persistence.Repositories
             TransportSheduleRepository = transportSheduleRepo;
             VehicleRepository = vehicleRepo;
             TransportRegisterRepository = transportRegisterRepo;
+            AttendanceRepository = attendanceRepo;
+            LegendRepository = legendRepo;
             ReportRepository = ReportRepo;
         }
 

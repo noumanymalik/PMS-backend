@@ -51,6 +51,13 @@ namespace PMS.Persistence.Repositories.Domain
                 .Where(x => x.SupervisorId == supervisorId)
                 .ToListAsync(cancellationToken);
         }
+
+        public async Task<List<Employee>> GetByDepartmentId(int departmentId, CancellationToken cancellationToken = default)
+        {
+            return await DBContext.Employee
+                .Where(x => x.DepartmentId == departmentId)
+                .ToListAsync(cancellationToken);
+        }
     }
 
     public class CorrectiveActionRepository : GenericRepository<CorrectiveAction, int>, ICorrectiveActionRepository

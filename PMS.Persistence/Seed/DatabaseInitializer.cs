@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using PMS.Application.Interfaces.Repositories;
 using PMS.Application.Interfaces.Services;
 using PMS.Domain.Entities.Period;
+using PMS.Domain.Entities.Presence;
 using PMS.Domain.Entities.Shedule;
 using PMS.Domain.Entities.Staff;
 using PMS.Domain.Entities.Users;
@@ -11,7 +12,6 @@ using PMS.Domain.Enums;
 using PMS.Persistence.Context;
 using PMS.Persistence.Extensions;
 using PMS.Persistence.Settings;
-using System;
 
 namespace PMS.Persistence.Seed
 {
@@ -48,6 +48,7 @@ namespace PMS.Persistence.Seed
                     await SeedDesignation();
                     await SeedShift();
                     await SeedTestEmployee();
+                    await SeedLegend();
                     await SeedPermissions();
                     await SeedUsers();
                     await SeedRoles();
@@ -101,6 +102,36 @@ namespace PMS.Persistence.Seed
                };
 
                 await _dbContext.Employee.AddRangeAsync(employee);
+                await _dbContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task SeedLegend()
+        {
+            if (!_dbContext.Legend.Any())
+            {
+                var legends = new List<Legend>
+                {
+                    new Legend { Code = "LG-01", Name = "Off", Discription = "" },
+                    new Legend { Code = "LG-02", Name = "Present", Discription = ""},
+                    new Legend { Code = "LG-03", Name = "Tardy", Discription = ""},
+                    new Legend { Code = "LG-04", Name = "CT Tardy", Discription = ""},
+                    new Legend { Code = "LG-05", Name = "Short / Early Leave", Discription = ""},
+                    new Legend { Code = "LG-06", Name = "AL", Discription = ""},
+                    new Legend { Code = "LG-07", Name = "AL (Unpaid)", Discription = ""},
+                    new Legend { Code = "LG-08", Name = "CL (Approved)", Discription = ""},
+                    new Legend { Code = "LG-09", Name = "CL (UnApproved)", Discription = ""},
+                    new Legend { Code = "LG-10", Name = "NCNS", Discription = ""},
+                    new Legend { Code = "LG-11", Name = "Medical (Paid)", Discription = ""},
+                    new Legend { Code = "LG-12", Name = "Medical (UnPaid)", Discription = ""},
+                    new Legend { Code = "LG-13", Name = "OverTime", Discription = ""},
+                    new Legend { Code = "LG-14", Name = "Paternity Leave", Discription = ""},
+                    new Legend { Code = "LG-15", Name = "Maternity Leave", Discription = ""},
+                    new Legend { Code = "LG-16", Name = "Hujj Leave", Discription = ""},
+                    new Legend { Code = "LG-17", Name = "Umrah Leave", Discription = ""},
+                };
+
+                await _dbContext.Legend.AddRangeAsync(legends);
                 await _dbContext.SaveChangesAsync();
             }
         }
@@ -752,9 +783,7 @@ namespace PMS.Persistence.Seed
                 await _dbContext.CalenderDate.AddRangeAsync(calenderDate);
                 await _dbContext.SaveChangesAsync();
             }
-        }
-
-        
+        }      
 
         private async Task SeedShift()
         {

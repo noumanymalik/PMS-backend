@@ -1,5 +1,4 @@
 ﻿using PMS.Domain.Entities.Base;
-using PMS.Domain.Entities.Period;
 using PMS.Domain.Entities.Staff;
 
 namespace PMS.Domain.Entities.Shedule

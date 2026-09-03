@@ -49,7 +49,10 @@ namespace PMS.Persistence
                    .AddScoped<ITransportSheduleRepository, TransportSheduleRepository>()
                    .AddScoped<IVehicleRepository, VehicleRepository>()
                    .AddScoped<ITransportRegisterRepository, TransportRegisterRepository>()
+                   .AddScoped<IAttendanceRepository, AttendanceRepository>()
+                   .AddScoped<ILegendRepository, LegendRepository>()
                    .AddScoped<IReportRepository, ReportRepository>();
+
 
 
             services.Configure<ApplicationDbSettings>(configuration.GetSection("ApplicationDbSettings"));

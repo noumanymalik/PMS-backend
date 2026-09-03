@@ -1,7 +1,7 @@
 ﻿
 namespace PMS.Application.Features.Employees.Commands.Create
 {
-    internal class CreateEmployeeCommandValidator
+    public class CreateEmployeeCommandValidator
     {
     }
 }

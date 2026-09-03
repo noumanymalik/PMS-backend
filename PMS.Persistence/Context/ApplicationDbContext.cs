@@ -6,6 +6,7 @@ using PMS.Domain.Entities.Auditing;
 using PMS.Domain.Entities.Base.Interfaces;
 using PMS.Domain.Entities.Loan;
 using PMS.Domain.Entities.Period;
+using PMS.Domain.Entities.Presence;
 using PMS.Domain.Entities.Reporting;
 using PMS.Domain.Entities.Shedule;
 using PMS.Domain.Entities.Staff;
@@ -65,6 +66,8 @@ namespace PMS.Persistence.Context
         public DbSet<Shift> Shift => Set<Shift>();
         public DbSet<Leave> Leave => Set<Leave>();
         public DbSet<LoanRequest> Loan => Set<LoanRequest>();
+
+        public DbSet<Legend> Legend => Set<Legend>();
 
 
         public DbSet<ApplicationUser> Users { get; set; }
