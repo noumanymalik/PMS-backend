@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using MigraDocCore.DocumentObjectModel;
 using PMS.Application.Interfaces.Services;
 using PMS.Domain.Entities.Absence;
 using PMS.Domain.Entities.Auditing;
@@ -15,6 +16,7 @@ using PMS.Persistence.Extensions;
 using PMS.Persistence.Models;
 using PMS.Persistence.Settings;
 using System.ComponentModel.DataAnnotations.Schema;
+using BreakType = PMS.Domain.Entities.AgentActivity.BreakType;
 
 namespace PMS.Persistence.Context
 {
@@ -68,6 +70,7 @@ namespace PMS.Persistence.Context
         public DbSet<LoanRequest> Loan => Set<LoanRequest>();
 
         public DbSet<Legend> Legend => Set<Legend>();
+        public DbSet<BreakType> BreakType => Set<BreakType>();
 
 
         public DbSet<ApplicationUser> Users { get; set; }

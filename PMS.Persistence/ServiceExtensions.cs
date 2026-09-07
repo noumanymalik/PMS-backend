@@ -51,9 +51,10 @@ namespace PMS.Persistence
                    .AddScoped<ITransportRegisterRepository, TransportRegisterRepository>()
                    .AddScoped<IAttendanceRepository, AttendanceRepository>()
                    .AddScoped<ILegendRepository, LegendRepository>()
+                   .AddScoped<IAgentSessionRepository, AgentSessionRepository>()
+                   .AddScoped<IBreakTypeRepository, BreakTypeRepository>()
+                   .AddScoped<IAgentBreakRepository, AgentBreakRepository>()
                    .AddScoped<IReportRepository, ReportRepository>();
-
-
 
             services.Configure<ApplicationDbSettings>(configuration.GetSection("ApplicationDbSettings"));
 

@@ -32,6 +32,9 @@ namespace PMS.Application.Interfaces.Repositories
         public ITransportRegisterRepository TransportRegisterRepository { get; set; }
         public IAttendanceRepository AttendanceRepository { get; set; }
         public ILegendRepository LegendRepository { get; set; }
+        public IAgentSessionRepository AgentSessionRepository { get; set; }
+        public IBreakTypeRepository BreakTypeRepository { get; set; }
+        public IAgentBreakRepository AgentBreakRepository { get; set; }
 
         public IReportRepository ReportRepository { get; set; }
 

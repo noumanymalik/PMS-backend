@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MigraDocCore.DocumentObjectModel;
 using PMS.Application.Interfaces.Repositories;
 using PMS.Application.Interfaces.Services;
 using PMS.Domain.Entities.Period;
@@ -49,6 +50,7 @@ namespace PMS.Persistence.Seed
                     await SeedShift();
                     await SeedTestEmployee();
                     await SeedLegend();
+                    await SeedBreakType();
                     await SeedPermissions();
                     await SeedUsers();
                     await SeedRoles();
@@ -102,6 +104,25 @@ namespace PMS.Persistence.Seed
                };
 
                 await _dbContext.Employee.AddRangeAsync(employee);
+                await _dbContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task SeedBreakType()
+        {
+            if (!_dbContext.BreakType.Any())
+            {
+                var breakTypes = new List<Domain.Entities.AgentActivity.BreakType>
+                {
+                    new Domain.Entities.AgentActivity.BreakType { Code = "BR-01", Name = "Meal Break", Description = "" },
+                    new Domain.Entities.AgentActivity.BreakType { Code = "BR-02", Name = "Prayer Break", Description = ""},
+                    new Domain.Entities.AgentActivity.BreakType { Code = "BR-03", Name = "Bio Break", Description = ""},
+                    new Domain.Entities.AgentActivity.BreakType { Code = "BR-04", Name = "Coaching Break", Description = ""},
+                    new Domain.Entities.AgentActivity.BreakType { Code = "BR-05", Name = "Training Break", Description = ""},
+                    new Domain.Entities.AgentActivity.BreakType { Code = "BR-06", Name = "Huddle", Description = ""},
+                };
+
+                await _dbContext.BreakType.AddRangeAsync(breakTypes);
                 await _dbContext.SaveChangesAsync();
             }
         }

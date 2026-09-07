@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore.Storage;
 using PMS.Application.Interfaces.Repositories;
 using PMS.Application.Interfaces.Repositories.DomainRepositories;
 using PMS.Persistence.Context;
-using PMS.Persistence.Repositories.Domain;
 using System.Data;
 
 namespace PMS.Persistence.Repositories
@@ -39,6 +38,9 @@ namespace PMS.Persistence.Repositories
         public ITransportRegisterRepository TransportRegisterRepository { get; set; }
         public IAttendanceRepository AttendanceRepository { get; set; }
         public ILegendRepository LegendRepository { get; set; }
+        public IAgentSessionRepository AgentSessionRepository { get; set; }
+        public IBreakTypeRepository BreakTypeRepository { get; set; }
+        public IAgentBreakRepository AgentBreakRepository { get; set; }
         public IReportRepository ReportRepository { get; set; }
 
         public UnitOfWork(ApplicationDbContext dbContext, ICalenderDateRepository dateRepo, ICalenderWeekRepository weekRepo, ICalenderMonthRepository monthRepo, ICalenderYearRepository yearRepo, IRotaRepository rotaRepo,
@@ -46,7 +48,7 @@ namespace PMS.Persistence.Repositories
                 IUserRepository UserRepo, IRoleRepository RoleRepo, IPermissionRepository permissionRepo, IRolePermissionRepository rolePermissionRepo, ILoanRepository loanRepo, ICorrectiveActionRepository correctiveActionRepo,
                 ICallLogsRepository callLogRepo, ICallSummaryAllRepository callSummaryAllRepo, ICallSummaryInboundRepository callSummaryInboundRepo, ISalesRepository salesRepo, ICancellationRepository cancellationRepo,
                 ITransportRegisterRepository transportRegisterRepo, IVehicleRepository vehicleRepo, ITransportSheduleRepository transportSheduleRepo,
-                IAttendanceRepository attendanceRepo, ILegendRepository legendRepo ,IReportRepository ReportRepo
+                IAttendanceRepository attendanceRepo, ILegendRepository legendRepo, IAgentSessionRepository agentSessionRepo, IBreakTypeRepository breakTypeRepo, IAgentBreakRepository agentBreakRepo, IReportRepository ReportRepo
 
             )
         {
@@ -78,6 +80,9 @@ namespace PMS.Persistence.Repositories
             AttendanceRepository = attendanceRepo;
             LegendRepository = legendRepo;
             ReportRepository = ReportRepo;
+            AgentSessionRepository = agentSessionRepo;
+            BreakTypeRepository = breakTypeRepo;
+            AgentBreakRepository = agentBreakRepo;
         }
 
         public void Dispose()
