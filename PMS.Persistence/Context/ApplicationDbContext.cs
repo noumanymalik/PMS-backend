@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using MigraDocCore.DocumentObjectModel;
 using PMS.Application.Interfaces.Services;
 using PMS.Domain.Entities.Absence;
+using PMS.Domain.Entities.AgentActivity;
 using PMS.Domain.Entities.Auditing;
 using PMS.Domain.Entities.Base.Interfaces;
 using PMS.Domain.Entities.Loan;
@@ -71,7 +72,7 @@ namespace PMS.Persistence.Context
 
         public DbSet<Legend> Legend => Set<Legend>();
         public DbSet<BreakType> BreakType => Set<BreakType>();
-
+        public DbSet<AgentSession> AgentSession => Set<AgentSession>();
 
         public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Permission> Permissions { get; set; }

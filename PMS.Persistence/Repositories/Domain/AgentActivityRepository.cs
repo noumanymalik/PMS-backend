@@ -1,4 +1,5 @@
-﻿using PMS.Application.Interfaces.Repositories.DomainRepositories;
+﻿using Microsoft.EntityFrameworkCore;
+using PMS.Application.Interfaces.Repositories.DomainRepositories;
 using PMS.Domain.Entities.AgentActivity;
 using PMS.Persistence.Context;
 
@@ -8,6 +9,13 @@ namespace PMS.Persistence.Repositories.Domain
     {
         public AgentSessionRepository(ApplicationDbContext context) : base(context)
         {
+        }
+
+        public async Task<AgentSession?> GetSessionByEmployeeIdAsync(int employeeId, CancellationToken cancellationToken = default)
+        {
+            return await DBContext.AgentSession.FirstOrDefaultAsync(
+                    x => x.EmployeeId == employeeId && x.IsActive == true,
+                    cancellationToken);
         }
     }
 

@@ -1,10 +1,10 @@
 ﻿using PMS.Domain.Entities.AgentActivity;
-using PMS.Domain.Entities.Staff;
 
 namespace PMS.Application.Interfaces.Repositories.DomainRepositories
 {
     public interface IAgentSessionRepository : IGenericRepository<AgentSession, int>
     {
+        Task<AgentSession?> GetSessionByEmployeeIdAsync(int employeeId, CancellationToken cancellationToken = default);
     }
 
     public interface IBreakTypeRepository : IGenericRepository<BreakType, int>
