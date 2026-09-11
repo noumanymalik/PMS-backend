@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using PMS.Application.Features.AgentBreaks.Commands.Create;
 using PMS.Application.Features.AgentBreaks.Commands.Update.UpdateApproval;
 using PMS.Application.Features.AgentBreaks.Commands.Update.UpdateBreakOut;
+using PMS.Application.Features.AgentBreaks.Queries.GetCurrentBreakByEmployeeId;
+using PMS.Application.Features.AgentBreaks.Queries.GetTotalBreakAvailedMinutsBySessionId;
 using PMS.Application.Features.AgentSessions.Commands.Create;
 using PMS.Application.Features.AgentSessions.Commands.Update;
 using PMS.Application.Features.AgentSessions.Queries.GetSessionByEmployeeId;
@@ -50,6 +52,16 @@ namespace PMS.API.Controllers
         [HttpGet]
         [Route("[action]")]
         public async Task<ActionResult> GetSessionByEmployeeId([FromQuery] GetSessionByEmployeeIdQuery query)
+            => Ok(await _mediator.Send(query));
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<ActionResult> GetCurrentBreakByEmployeeId([FromQuery] GetCurrentBreakByEmployeeIdQuery query)
+            => Ok(await _mediator.Send(query));
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<ActionResult> GetTotalBreakMinutsBySessionId([FromQuery] GetTotalBreakAvailedMinutsBySessionIdQuery query)
             => Ok(await _mediator.Send(query));
     }
 }

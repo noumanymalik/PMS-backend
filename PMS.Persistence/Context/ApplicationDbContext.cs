@@ -73,7 +73,7 @@ namespace PMS.Persistence.Context
         public DbSet<Legend> Legend => Set<Legend>();
         public DbSet<BreakType> BreakType => Set<BreakType>();
         public DbSet<AgentSession> AgentSession => Set<AgentSession>();
-
+        public DbSet<AgentBreak> AgentBreak => Set<AgentBreak>();
         public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Role> Roles { get; set; }

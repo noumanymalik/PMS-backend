@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PMS.Application.Interfaces.Repositories.DomainRepositories;
 using PMS.Domain.Entities.AgentActivity;
+using PMS.Domain.Entities.Staff;
 using PMS.Persistence.Context;
 
 namespace PMS.Persistence.Repositories.Domain
@@ -30,6 +31,20 @@ namespace PMS.Persistence.Repositories.Domain
     {
         public AgentBreakRepository(ApplicationDbContext context) : base(context)
         {
+        }
+
+        public async Task<AgentBreak?> GetCurrentBreakByEmployeeIdAsync(int employeeId, CancellationToken cancellationToken = default)
+        {
+            return await DBContext.AgentBreak.FirstOrDefaultAsync(
+                x => x.EmployeeId == employeeId && x.IsActive == true,
+                cancellationToken);
+        }
+
+        public async Task<int?> GetTotalBreakAvailedMinutsAsync(int sessionId, CancellationToken cancellationToken = default)
+        {
+            return await DBContext.AgentBreak
+                .Where(x => x.AgentSessionId == sessionId)
+                .SumAsync(x => x.DurationMinutes ?? 0, cancellationToken);
         }
     }
 }

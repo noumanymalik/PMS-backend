@@ -12,7 +12,7 @@ using PMS.Persistence.Context;
 namespace PMS.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260907212207_initial")]
+    [Migration("20260911163655_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -196,6 +196,9 @@ namespace PMS.Persistence.Migrations
 
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("DurationMinutes")
+                        .HasColumnType("int");
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");

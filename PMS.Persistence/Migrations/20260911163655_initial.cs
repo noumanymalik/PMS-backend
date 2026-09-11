@@ -421,6 +421,7 @@ namespace PMS.Persistence.Migrations
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     LoginTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LogOutTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DurationMinutes = table.Column<int>(type: "int", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),

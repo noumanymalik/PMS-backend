@@ -32,6 +32,8 @@ namespace PMS.Application.Features.AgentSessions.Commands.Update
 
             _mapper.Map(request, session, typeof(UpdateAgentSessionCommand), typeof(AgentSession));
 
+            session.DurationMinutes = (int)(session.LogOutTime - session.LoginTime).TotalMinutes;
+
             await _unitOfWork.BeginTransactionAsync();
             try
             {

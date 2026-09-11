@@ -194,6 +194,9 @@ namespace PMS.Persistence.Migrations
                     b.Property<DateTime?>("DateUpdated")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("DurationMinutes")
+                        .HasColumnType("int");
+
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 

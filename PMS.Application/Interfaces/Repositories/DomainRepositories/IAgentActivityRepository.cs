@@ -13,5 +13,7 @@ namespace PMS.Application.Interfaces.Repositories.DomainRepositories
 
     public interface IAgentBreakRepository : IGenericRepository<AgentBreak, int>
     {
+        Task<AgentBreak?> GetCurrentBreakByEmployeeIdAsync(int employeeId, CancellationToken cancellationToken = default);
+        Task<int?> GetTotalBreakAvailedMinutsAsync(int sessionId, CancellationToken cancellationToken = default);
     }
 }

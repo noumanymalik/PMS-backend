@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\AgentBreaks\Queries\" />
     <Folder Include="Features\Attendances\Queries\" />
     <Folder Include="Features\AgentBreakTypes\Commands\Create\" />
     <Folder Include="Features\Lookups\Queries\GetEmployees\" />

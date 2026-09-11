@@ -13,6 +13,7 @@ namespace PMS.Persistence.ModelConfigurations
             builder.Property(x => x.EmployeeId);
             builder.Property(x => x.LoginTime);
             builder.Property(x => x.LogOutTime);
+            builder.Property(x => x.DurationMinutes).HasColumnType("int");
             builder.Property(x => x.IsActive).IsRequired().HasDefaultValue(false);
         }
     }
