@@ -28,7 +28,7 @@ namespace PMS.Application.Features.AgentBreaks.Commands.Update.UpdateBreakOut
 
         public async Task<IResponse<int>> Handle(UpdateAgentBreakCommand request, CancellationToken cancellationToken)
         {
-            var agentBreak = await _unitOfWork.AgentBreakRepository.GetFirstByAsync(p => p.AgentSessionId == request.AgentSessionId && p.EmployeeId == request.EmployeeId && p.BreakTypeId == request.BreakTypeId)
+            var agentBreak = await _unitOfWork.AgentBreakRepository.GetFirstByAsync(p => p.AgentSessionId == request.AgentSessionId && p.EmployeeId == request.EmployeeId && p.BreakTypeId == request.BreakTypeId && p.IsActive == true)
                 ?? throw new EntityNotFoundException(nameof(AgentSession), request.BreakTypeId);
 
             _mapper.Map(request, agentBreak, typeof(UpdateAgentBreakCommand), typeof(AgentBreak));

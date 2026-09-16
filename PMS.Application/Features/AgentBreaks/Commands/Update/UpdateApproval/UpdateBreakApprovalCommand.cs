@@ -4,6 +4,7 @@ using PMS.Application.Common.Exceptions;
 using PMS.Application.Interfaces.Repositories;
 using PMS.Application.Wrappers.Response;
 using PMS.Domain.Entities.Absence;
+using PMS.Domain.Entities.AgentActivity;
 
 namespace PMS.Application.Features.AgentBreaks.Commands.Update.UpdateApproval
 {
@@ -27,14 +28,14 @@ namespace PMS.Application.Features.AgentBreaks.Commands.Update.UpdateApproval
         public async Task<IResponse<int>> Handle(UpdateBreakApprovalCommand request, CancellationToken cancellationToken)
         {
             var agentBreak = await _unitOfWork.AgentBreakRepository.GetFirstByAsync(p => p.Id == request.Id)
-                ?? throw new EntityNotFoundException(nameof(Leave), request.Id);
+                ?? throw new EntityNotFoundException(nameof(AgentBreak), request.Id);
 
-            _mapper.Map(request, agentBreak, typeof(UpdateBreakApprovalCommand), typeof(Leave));
+            _mapper.Map(request, agentBreak, typeof(UpdateBreakApprovalCommand), typeof(AgentBreak));
 
             await _unitOfWork.BeginTransactionAsync();
             try
             {
-                // 1. Update Leave
+                // 1. Update break
                 await _unitOfWork.AgentBreakRepository.UpdateAsync(agentBreak);
 
                 await _unitOfWork.SaveChangesAsync(cancellationToken);
