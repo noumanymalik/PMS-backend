@@ -9,9 +9,8 @@ namespace PMS.Application.Features.AgentBreaks.Queries.GetCurrentBreakByEmployee
         public GetCurrentBreakByEmployeeIdMapper() 
         {
             CreateMap<GetCurrentBreakByEmployeeIdResponse, AgentBreak>()
-               .ForMember(des => des.Id, _ => _.MapFrom(src => src.Id))
                .ForMember(des => des.BreakTypeId, _ => _.MapFrom(src => src.BreakTypeId))
-               .ForMember(des => des.StartTime, _ => _.MapFrom(src => src.StartTime))
+               .ForMember(des => des.StartTime, _ => _.MapFrom(src => src.Duration))
                .ReverseMap();
         }
     }

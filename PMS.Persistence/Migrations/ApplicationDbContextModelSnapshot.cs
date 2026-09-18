@@ -139,7 +139,7 @@ namespace PMS.Persistence.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EndTime")
+                    b.Property<DateTime?>("EndTime")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
@@ -208,7 +208,7 @@ namespace PMS.Persistence.Migrations
                     b.Property<bool>("IsArchived")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("LogOutTime")
+                    b.Property<DateTime?>("LogOutTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LoginTime")

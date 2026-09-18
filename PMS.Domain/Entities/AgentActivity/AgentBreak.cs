@@ -11,7 +11,7 @@ namespace PMS.Domain.Entities.AgentActivity
         public int EmployeeId { get; set; }
         public int BreakTypeId { get; set; }
         public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
         public int? DurationMinutes { get; set; }
         public string Remarks { get; set; }
         public bool IsActive { get; set; }

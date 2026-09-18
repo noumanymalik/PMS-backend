@@ -33,7 +33,7 @@ namespace PMS.Application.Features.AgentBreaks.Commands.Update.UpdateBreakOut
 
             _mapper.Map(request, agentBreak, typeof(UpdateAgentBreakCommand), typeof(AgentBreak));
 
-            agentBreak.DurationMinutes = (int)(agentBreak.EndTime - agentBreak.StartTime).TotalMinutes;
+            //agentBreak.DurationMinutes = (int)(agentBreak.EndTime - agentBreak.StartTime).TotalMinutes;
 
             await _unitOfWork.BeginTransactionAsync();
             try

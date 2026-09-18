@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PMS.Application.Features.Leaves.Commands.Create;
 using PMS.Application.Features.Leaves.Commands.UpdateApproval;
 using PMS.Application.Features.Leaves.Queries.GetLeaveList;
+using PMS.Application.Features.Leaves.Queries.GetLeaveListByDates;
 using PMS.Application.Features.Leaves.Queries.GetLeaveListByEmployeeId;
 using PMS.Application.Features.Leaves.Queries.LeaveStatusbyEmployeeId;
 
@@ -32,6 +33,11 @@ namespace PMS.API.Controllers
         [HttpGet]
         [Route("[action]")]
         public async Task<ActionResult<List<GetLeaveListResponse>>> GetEmployeeLeavesBySupId([FromQuery] GetLeaveListQuery query, CancellationToken cancellationToken)
+            => Ok(await _mediator.Send(query));
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<ActionResult<List<GetLeaveListResponse>>> GetEmployeeLeavesByLeadSupId([FromQuery] GetLeaveListByDatesQuery query, CancellationToken cancellationToken)
             => Ok(await _mediator.Send(query));
 
         [HttpGet]

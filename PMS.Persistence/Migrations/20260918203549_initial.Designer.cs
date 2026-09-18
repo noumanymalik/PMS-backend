@@ -12,7 +12,7 @@ using PMS.Persistence.Context;
 namespace PMS.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260911163655_initial")]
+    [Migration("20260918203549_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -142,7 +142,7 @@ namespace PMS.Persistence.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EndTime")
+                    b.Property<DateTime?>("EndTime")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
@@ -211,7 +211,7 @@ namespace PMS.Persistence.Migrations
                     b.Property<bool>("IsArchived")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("LogOutTime")
+                    b.Property<DateTime?>("LogOutTime")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LoginTime")

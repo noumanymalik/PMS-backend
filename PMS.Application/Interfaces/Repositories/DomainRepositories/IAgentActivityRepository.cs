@@ -1,4 +1,6 @@
-﻿using PMS.Domain.Entities.AgentActivity;
+﻿using PMS.Application.Features.AgentBreaks.Queries.GetBreaksByEmployeeId;
+using PMS.Application.Features.AgentBreaks.Queries.GetCurrentBreakByEmployeeId;
+using PMS.Domain.Entities.AgentActivity;
 
 namespace PMS.Application.Interfaces.Repositories.DomainRepositories
 {
@@ -13,7 +15,9 @@ namespace PMS.Application.Interfaces.Repositories.DomainRepositories
 
     public interface IAgentBreakRepository : IGenericRepository<AgentBreak, int>
     {
-        Task<AgentBreak?> GetCurrentBreakByEmployeeIdAsync(int employeeId, CancellationToken cancellationToken = default);
+        //Task<AgentBreak?> GetCurrentBreakByEmployeeIdAsync(int employeeId, CancellationToken cancellationToken = default);
+        Task<GetCurrentBreakByEmployeeIdResponse?> GetCurrentBreakByEmployeeIdAsync(int employeeId, CancellationToken cancellationToken = default);
         Task<int?> GetTotalBreakAvailedMinutsAsync(int sessionId, CancellationToken cancellationToken = default);
+        Task<List<GetBreaksByEmployeeIdResponse>> GetBreaksByEmployeeIdAsync(int employeeId, CancellationToken cancellationToken = default);
     }
 }

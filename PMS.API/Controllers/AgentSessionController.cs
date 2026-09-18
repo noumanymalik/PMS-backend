@@ -5,6 +5,7 @@ using PMS.Application.Features.AgentBreaks.Commands.Update.UpdateApproval;
 using PMS.Application.Features.AgentBreaks.Commands.Update.UpdateBreakOut;
 using PMS.Application.Features.AgentBreaks.Queries.GetBreakListByEmployeeId;
 using PMS.Application.Features.AgentBreaks.Queries.GetBreakListBySupervisorId;
+using PMS.Application.Features.AgentBreaks.Queries.GetBreaksByEmployeeId;
 using PMS.Application.Features.AgentBreaks.Queries.GetCurrentBreakByEmployeeId;
 using PMS.Application.Features.AgentBreaks.Queries.GetTotalBreakAvailedMinutsBySessionId;
 using PMS.Application.Features.AgentSessions.Commands.Create;
@@ -74,6 +75,11 @@ namespace PMS.API.Controllers
         [HttpGet]
         [Route("[action]")]
         public async Task<ActionResult> GetBreaksListBySupervisorId([FromQuery] GetBreakListBySupervisorIdQuery query)
+            => Ok(await _mediator.Send(query));
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<ActionResult> GetBreaksByEmployeeId([FromQuery] GetBreaksByEmployeeIdQuery query)
             => Ok(await _mediator.Send(query));
     }
 }
