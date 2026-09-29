@@ -11,4 +11,12 @@ namespace PMS.Persistence.ModelConfigurations
             builder.HasNoKey();
         }
     }
+
+    internal class ReportResultDailyProductivityandTimeAllocationMatrixConfiguration : IEntityTypeConfiguration<ReportResultDailyProductivityandTimeAllocationMatrix>
+    {
+        public void Configure(EntityTypeBuilder<ReportResultDailyProductivityandTimeAllocationMatrix> builder)
+        {
+            builder.HasNoKey();
+        }
+    }
 }

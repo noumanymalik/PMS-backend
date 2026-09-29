@@ -64,7 +64,6 @@
         Fortnightly = 3,
         Monthly = 4,
     }
-
     public enum Legends
     {
         P = 1,
@@ -133,6 +132,7 @@
         Agent_Session,
         Agent_Attendance,
         Agent_Break,
+        Agent_Status,
         Break_Approval,
         Corrective_Action,
         Import,
@@ -162,6 +162,7 @@
         Released_Approved_Loan,
         Reports,
         TriumvirateTangoOfTelephonyReport,
+        ProductivityandTimeMatrixReport,
         Polices,
         Policiy_Documents,
         Score_Card,

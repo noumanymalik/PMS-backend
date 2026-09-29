@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PMS.Application.Features.Reports.GetDailyProductivityandTimeAllocationMatrix;
 using PMS.Application.Features.Reports.GetExcelTriumvirateTangoOfTelephony;
 using PMS.Application.Features.Reports.GetTriumvirateTangoOfTelephony;
-using PMS.Infrastructure.Authorization;
 
 namespace PMS.API.Controllers
 {
@@ -31,5 +31,10 @@ namespace PMS.API.Controllers
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                 fileName);
         }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<ActionResult> GetDailyProductivityandTimeAllocationMatrixReport([FromQuery] GetDailyProductivityandTimeAllocationMatrixQuery query, CancellationToken cancellationToken)
+            => Ok(await _mediator.Send(query));
     }
 }

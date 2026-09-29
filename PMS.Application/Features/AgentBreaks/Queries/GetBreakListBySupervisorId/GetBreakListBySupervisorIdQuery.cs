@@ -9,6 +9,9 @@ namespace PMS.Application.Features.AgentBreaks.Queries.GetBreakListBySupervisorI
 {
     public class GetBreakListBySupervisorIdQuery : ListPagedQuery<GetBreakListBySupervisorIdResponse>
     {
+        public DateTime? FromDate { get; set; }
+        public DateTime? ToDate { get; set; }
+        public int? EmployeeId { get; set; }
         public int SupervisorId { get; set; }
         public int ApprovalTypeId { get; set; }
     }
@@ -39,6 +42,21 @@ namespace PMS.Application.Features.AgentBreaks.Queries.GetBreakListBySupervisorI
                         c.Employee.SupervisorId == request.SupervisorId &&
                         c.Approval == (Domain.Enums.Approval)request.ApprovalTypeId &&
                         c.IsActive == false);
+
+            // Date Range filter
+            if (request.FromDate.HasValue && request.ToDate.HasValue)
+            {
+                var fromDate = request.FromDate.Value.Date;
+                var toDate = request.ToDate.Value.Date.AddDays(1);
+
+                productsQuery = productsQuery.Where(c => c.AgentSession.SessionDate >= fromDate && c.AgentSession.SessionDate < toDate);
+            }
+
+            // Employee filter
+            if (request.EmployeeId.HasValue)
+            {
+                productsQuery = productsQuery.Where(c => c.EmployeeId == request.EmployeeId.Value);
+            }
             #endregion
 
             #region Ordering

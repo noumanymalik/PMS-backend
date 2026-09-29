@@ -3,7 +3,6 @@ using PMS.Application.Features.AgentBreaks.Queries.GetBreaksByEmployeeId;
 using PMS.Application.Features.AgentBreaks.Queries.GetCurrentBreakByEmployeeId;
 using PMS.Application.Interfaces.Repositories.DomainRepositories;
 using PMS.Domain.Entities.AgentActivity;
-using PMS.Domain.Entities.Staff;
 using PMS.Persistence.Context;
 
 namespace PMS.Persistence.Repositories.Domain
@@ -14,12 +13,22 @@ namespace PMS.Persistence.Repositories.Domain
         {
         }
 
+        public async Task<int> GetLiveEmployeesCountBySupervisorId(int supervisorId, CancellationToken cancellationToken = default)
+        {
+            return await DBContext.AgentSession
+                .CountAsync(
+                    x => x.Employee.SupervisorId == supervisorId
+                         && x.IsActive == true,
+                    cancellationToken);
+        }
+
         public async Task<AgentSession?> GetSessionByEmployeeIdAsync(int employeeId, CancellationToken cancellationToken = default)
         {
             return await DBContext.AgentSession.FirstOrDefaultAsync(
                     x => x.EmployeeId == employeeId && x.IsActive == true,
                     cancellationToken);
         }
+
     }
 
     public class BreakTypeRepository : GenericRepository<BreakType, int>, IBreakTypeRepository
@@ -132,5 +141,20 @@ namespace PMS.Persistence.Repositories.Domain
                         .ToList();
         }
 
+        public async Task<int> GetEmployeesCountOnBreakBySupervisorId(int supervisorId, CancellationToken cancellationToken = default)
+        {
+            return await DBContext.AgentBreak
+                .Where(x => x.Employee.SupervisorId == supervisorId && x.IsActive == true)
+                .CountAsync(cancellationToken);
+        }
+
+        public async Task<AgentBreak?> GetBreakByEmployeeIdAsync(int employeeId, CancellationToken cancellationToken = default)
+        {
+            return await DBContext.AgentBreak
+             .FirstOrDefaultAsync(
+                 x => x.EmployeeId == employeeId &&
+                      x.IsActive == true,
+                 cancellationToken);
+        }
     }
 }

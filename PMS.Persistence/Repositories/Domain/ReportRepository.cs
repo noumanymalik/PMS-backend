@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PMS.Application.Interfaces.Repositories.DomainRepositories;
 using PMS.Domain.Entities.Reporting;
+using PMS.Domain.Entities.Staff;
 using PMS.Persistence.Context;
 
 namespace PMS.Persistence.Repositories.Domain
@@ -25,6 +26,24 @@ namespace PMS.Persistence.Repositories.Domain
             };
 
             var listing = await DBContext.ReportResultTriumvirateTangoOfTelephony.FromSqlRaw("EXEC [dbo].[TriumvirateTangoofTelephony] @ReportType, @FromDate, @ToDate", sqlParameters.ToArray()).ToListAsync();
+
+            return listing;
+        }
+
+        public async Task<IEnumerable<ReportResultDailyProductivityandTimeAllocationMatrix>> ReportResultDailyProductivityandTimeAllocationMatrix(DateTime startDate, DateTime endDate, int? departmentId, int? employeeId, CancellationToken cancellationToken = default)
+        {
+            var sqlParameters = new List<SqlParameter>
+            {
+                new SqlParameter("@FromDate", startDate),
+                new SqlParameter("@ToDate", endDate),
+                new SqlParameter("@DepartmentId", departmentId ?? (object)DBNull.Value),
+                new SqlParameter("@EmployeeId", employeeId ?? (object)DBNull.Value)
+
+                //new SqlParameter("@DepartmentId", departmentId.HasValue ? departmentId.Value : DBNull.Value),
+                //new SqlParameter("@EmployeeId", employeeId.HasValue ? employeeId.Value : DBNull.Value)
+            };
+
+            var listing = await DBContext.ReportResultDailyProductivityandTimeAllocationMatrix.FromSqlRaw("EXEC [dbo].[DailyProductivityandTimeAllocationMatrix] @FromDate, @ToDate, @DepartmentId, @EmployeeId ", sqlParameters.ToArray()).ToListAsync();
 
             return listing;
         }
