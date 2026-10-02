@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using MigraDocCore.DocumentObjectModel;
 using PMS.Application.Interfaces.Services;
 using PMS.Domain.Entities.Absence;
 using PMS.Domain.Entities.AgentActivity;
 using PMS.Domain.Entities.Auditing;
 using PMS.Domain.Entities.Base.Interfaces;
 using PMS.Domain.Entities.Loan;
+using PMS.Domain.Entities.Outbound;
 using PMS.Domain.Entities.Period;
 using PMS.Domain.Entities.Presence;
 using PMS.Domain.Entities.Reporting;
@@ -80,7 +80,8 @@ namespace PMS.Persistence.Context
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<RolePermission> RolePermissions { get; set; }
-
+        public DbSet<OutboundProduct> OutboundProduct { get; set; }
+        public DbSet<OutboundSalesStatus> OutboundSalesStatus { get; set; }
 
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

@@ -41,6 +41,9 @@ namespace PMS.Persistence.Repositories
         public IAgentSessionRepository AgentSessionRepository { get; set; }
         public IBreakTypeRepository BreakTypeRepository { get; set; }
         public IAgentBreakRepository AgentBreakRepository { get; set; }
+        public IOutboundSalesRepository OutboundSalesRepository { get; set; }
+        public IOutboundProductRepository OutboundProductRepository { get; set; }
+        public IOutboundSalesStatusRepository OutboundSalesStatusRepository { get; set; }
         public IReportRepository ReportRepository { get; set; }
 
         public UnitOfWork(ApplicationDbContext dbContext, ICalenderDateRepository dateRepo, ICalenderWeekRepository weekRepo, ICalenderMonthRepository monthRepo, ICalenderYearRepository yearRepo, IRotaRepository rotaRepo,
@@ -48,7 +51,9 @@ namespace PMS.Persistence.Repositories
                 IUserRepository UserRepo, IRoleRepository RoleRepo, IPermissionRepository permissionRepo, IRolePermissionRepository rolePermissionRepo, ILoanRepository loanRepo, ICorrectiveActionRepository correctiveActionRepo,
                 ICallLogsRepository callLogRepo, ICallSummaryAllRepository callSummaryAllRepo, ICallSummaryInboundRepository callSummaryInboundRepo, ISalesRepository salesRepo, ICancellationRepository cancellationRepo,
                 ITransportRegisterRepository transportRegisterRepo, IVehicleRepository vehicleRepo, ITransportSheduleRepository transportSheduleRepo,
-                IAttendanceRepository attendanceRepo, ILegendRepository legendRepo, IAgentSessionRepository agentSessionRepo, IBreakTypeRepository breakTypeRepo, IAgentBreakRepository agentBreakRepo, IReportRepository ReportRepo
+                IAttendanceRepository attendanceRepo, ILegendRepository legendRepo, IAgentSessionRepository agentSessionRepo, IBreakTypeRepository breakTypeRepo, IAgentBreakRepository agentBreakRepo,
+                IOutboundSalesRepository outboundSalesRepo, IOutboundProductRepository outboundProductRepo, IOutboundSalesStatusRepository outboundSalesStatusRepo,
+                IReportRepository ReportRepo
 
             )
         {
@@ -83,6 +88,9 @@ namespace PMS.Persistence.Repositories
             AgentSessionRepository = agentSessionRepo;
             BreakTypeRepository = breakTypeRepo;
             AgentBreakRepository = agentBreakRepo;
+            OutboundSalesRepository = outboundSalesRepo;
+            OutboundProductRepository = outboundProductRepo;
+            OutboundSalesStatusRepository = outboundSalesStatusRepo;
         }
 
         public void Dispose()

@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using PMS.Application.Features.Leaves.Queries.GetLeaveList;
 using PMS.Application.Features.Sales.Queries.GetSalesList;
 
 namespace PMS.API.Controllers

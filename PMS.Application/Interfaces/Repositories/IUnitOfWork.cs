@@ -35,6 +35,9 @@ namespace PMS.Application.Interfaces.Repositories
         public IAgentSessionRepository AgentSessionRepository { get; set; }
         public IBreakTypeRepository BreakTypeRepository { get; set; }
         public IAgentBreakRepository AgentBreakRepository { get; set; }
+        public IOutboundSalesRepository OutboundSalesRepository { get; set; }
+        public IOutboundProductRepository OutboundProductRepository { get; set; }
+        public IOutboundSalesStatusRepository OutboundSalesStatusRepository { get; set; }
 
         public IReportRepository ReportRepository { get; set; }
 

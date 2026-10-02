@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using MigraDocCore.DocumentObjectModel;
 using PMS.Application.Interfaces.Repositories;
 using PMS.Application.Interfaces.Services;
+using PMS.Domain.Entities.Outbound;
 using PMS.Domain.Entities.Period;
 using PMS.Domain.Entities.Presence;
 using PMS.Domain.Entities.Shedule;
@@ -55,6 +55,8 @@ namespace PMS.Persistence.Seed
                     await SeedUsers();
                     await SeedRoles();
                     await RolePermission();
+                    await SeedOutboundProduct();
+                    await SeedOutboundSalesStatus();
                 }
             }
             catch (Exception ex)
@@ -123,6 +125,39 @@ namespace PMS.Persistence.Seed
                 };
 
                 await _dbContext.BreakType.AddRangeAsync(breakTypes);
+                await _dbContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task SeedOutboundProduct()
+        {
+            if (!_dbContext.OutboundProduct.Any())
+            {
+                var products = new List<OutboundProduct>
+                {
+                    new OutboundProduct { Name = "Gas", Active = Active.Active },
+                    new OutboundProduct { Name = "Electric", Active = Active.Active },
+                    new OutboundProduct { Name = "Electric & Gas", Active = Active.Active },
+                };
+
+                await _dbContext.OutboundProduct.AddRangeAsync(products);
+                await _dbContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task SeedOutboundSalesStatus()
+        {
+            if (!_dbContext.OutboundSalesStatus.Any())
+            {
+                var status = new List<OutboundSalesStatus>
+                {
+                    new OutboundSalesStatus { Name = "Pending" },
+                    new OutboundSalesStatus { Name = "Clawback" },
+                    new OutboundSalesStatus { Name = "Non Enrolled" },
+                    new OutboundSalesStatus { Name = "Completed" },
+                };
+
+                await _dbContext.OutboundSalesStatus.AddRangeAsync(status);
                 await _dbContext.SaveChangesAsync();
             }
         }

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using PMS.Application.Common;
-using PMS.Application.Extensions;
 using PMS.Application.Interfaces.Repositories;
 using PMS.Application.Wrappers;
 using PMS.Application.Wrappers.Response;

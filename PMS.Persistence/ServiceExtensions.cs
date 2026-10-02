@@ -54,6 +54,9 @@ namespace PMS.Persistence
                    .AddScoped<IAgentSessionRepository, AgentSessionRepository>()
                    .AddScoped<IBreakTypeRepository, BreakTypeRepository>()
                    .AddScoped<IAgentBreakRepository, AgentBreakRepository>()
+                   .AddScoped<IOutboundSalesRepository, OutboundSalesRepository>()
+                   .AddScoped<IOutboundProductRepository, OutboundProductRepository>()
+                   .AddScoped<IOutboundSalesStatusRepository, OutboundSalesStatusRepository>()
                    .AddScoped<IReportRepository, ReportRepository>();
 
             services.Configure<ApplicationDbSettings>(configuration.GetSection("ApplicationDbSettings"));

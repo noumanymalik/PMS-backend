@@ -137,6 +137,45 @@ namespace PMS.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OutboundProduct",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Active = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
+                    DateArchived = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OutboundProduct", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OutboundSalesStatus",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
+                    DateArchived = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OutboundSalesStatus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Permissions",
                 columns: table => new
                 {
@@ -147,6 +186,27 @@ namespace PMS.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Permissions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReportResultDailyProductivityandTimeAllocationMatrix",
+                columns: table => new
+                {
+                    AttendanceDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Names = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SessionDuration = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Meal = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Prayer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Bio = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Coaching = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Training = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Huddle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TotalBreak = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductionHours = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
                 });
 
             migrationBuilder.CreateTable(
@@ -689,6 +749,57 @@ namespace PMS.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OutboundSales",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    CustomerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CustomerPhoneNo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ConfirmationNo = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    CloserId = table.Column<int>(type: "int", nullable: false),
+                    StatusId = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
+                    DateArchived = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OutboundSales", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OutboundSales_Employee_CloserId",
+                        column: x => x.CloserId,
+                        principalTable: "Employee",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OutboundSales_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employee",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OutboundSales_OutboundProduct_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "OutboundProduct",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OutboundSales_OutboundSalesStatus_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "OutboundSalesStatus",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Rota",
                 columns: table => new
                 {
@@ -1044,6 +1155,26 @@ namespace PMS.Persistence.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OutboundSales_CloserId",
+                table: "OutboundSales",
+                column: "CloserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OutboundSales_EmployeeId",
+                table: "OutboundSales",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OutboundSales_ProductId",
+                table: "OutboundSales",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OutboundSales_StatusId",
+                table: "OutboundSales",
+                column: "StatusId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RolePermissions_PermissionId",
                 table: "RolePermissions",
                 column: "PermissionId");
@@ -1139,6 +1270,12 @@ namespace PMS.Persistence.Migrations
                 name: "Loan");
 
             migrationBuilder.DropTable(
+                name: "OutboundSales");
+
+            migrationBuilder.DropTable(
+                name: "ReportResultDailyProductivityandTimeAllocationMatrix");
+
+            migrationBuilder.DropTable(
                 name: "ReportResultTriumvirateTangoOfTelephony");
 
             migrationBuilder.DropTable(
@@ -1170,6 +1307,12 @@ namespace PMS.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "CalenderWeek");
+
+            migrationBuilder.DropTable(
+                name: "OutboundProduct");
+
+            migrationBuilder.DropTable(
+                name: "OutboundSalesStatus");
 
             migrationBuilder.DropTable(
                 name: "Permissions");
