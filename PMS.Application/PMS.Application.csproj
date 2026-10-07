@@ -23,7 +23,6 @@
     <Folder Include="Features\Attendances\Queries\" />
     <Folder Include="Features\AgentBreakTypes\Commands\Create\" />
     <Folder Include="Features\Lookups\Queries\GetEmployees\" />
-    <Folder Include="Features\OutboundSales\Queries\GetOutboundSalesStatus\" />
     <Folder Include="Features\Sales\Commands\" />
     <Folder Include="Features\Vehicles\Commands\Update\" />
     <Folder Include="Interfaces\Application\" />

@@ -3,7 +3,6 @@ using MediatR;
 using PMS.Application.Common.Exceptions;
 using PMS.Application.Interfaces.Repositories;
 using PMS.Application.Wrappers.Response;
-using PMS.Domain.Entities.Absence;
 using PMS.Domain.Entities.Loan;
 
 namespace PMS.Application.Features.Loan.Commands.UpdateApproval

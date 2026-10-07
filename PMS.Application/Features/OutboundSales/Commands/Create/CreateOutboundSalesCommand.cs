@@ -46,7 +46,7 @@ namespace PMS.Application.Features.OutboundSales.Commands.Create
             }
             await _unitOfWork.CommitTransactionAsync();
 
-            return await Response<int>.SuccessAsync(sales.Id, "Sales Entered.");
+            return await Response<int>.SuccessAsync(sales.Id, "Sales logged.");
         }
     }
 }

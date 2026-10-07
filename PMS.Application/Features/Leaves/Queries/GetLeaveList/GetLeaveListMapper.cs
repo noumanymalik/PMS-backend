@@ -17,7 +17,6 @@ namespace PMS.Application.Features.Leaves.Queries.GetLeaveList
                 .ForMember(des => des.LeaveType, _ => _.MapFrom(src => src.LeaveType))
                 .ForMember(des => des.ApprovalStatus, _ => _.MapFrom(src => src.Approval))
                 .ForMember(des => des.Reason, _ => _.MapFrom(src => src.Reason));
-
         }
     }
 }
