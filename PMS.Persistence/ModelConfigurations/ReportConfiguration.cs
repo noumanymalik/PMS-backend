@@ -19,4 +19,20 @@ namespace PMS.Persistence.ModelConfigurations
             builder.HasNoKey();
         }
     }
+
+    internal class ReportResultDailyOutboundSalesConfiguration : IEntityTypeConfiguration<ReportResultDailyOutboundSales>
+    {
+        public void Configure(EntityTypeBuilder<ReportResultDailyOutboundSales> builder)
+        {
+            builder.HasNoKey();
+        }
+    }
+
+    internal class ReportResultOutboundSalesSummaryConfiguration : IEntityTypeConfiguration<ReportResultOutboundSalesSummary>
+    {
+        public void Configure(EntityTypeBuilder<ReportResultOutboundSalesSummary> builder)
+        {
+            builder.HasNoKey();
+        }
+    }
 }

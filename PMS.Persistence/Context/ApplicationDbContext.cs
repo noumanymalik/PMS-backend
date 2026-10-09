@@ -54,11 +54,17 @@ namespace PMS.Persistence.Context
         }
 
 
-
         [NotMapped]
         public DbSet<ReportResultTriumvirateTangoOfTelephony> ReportResultTriumvirateTangoOfTelephony { get; set; }
+
         [NotMapped]
         public DbSet<ReportResultDailyProductivityandTimeAllocationMatrix> ReportResultDailyProductivityandTimeAllocationMatrix { get; set; }
+
+        [NotMapped]
+        public DbSet<ReportResultDailyOutboundSales> ReportResultDailyOutboundSales { get; set; }
+
+        [NotMapped]
+        public DbSet<ReportResultOutboundSalesSummary> ReportResultOutboundSalesSummary { get; set; }
 
         public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
         public DbSet<CalenderYear> CalenderYear => Set<CalenderYear>();
