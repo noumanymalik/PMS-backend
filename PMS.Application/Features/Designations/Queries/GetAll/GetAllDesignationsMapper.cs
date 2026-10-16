@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using PMS.Application.Features.Departments.Queries.GetAll;
 using PMS.Domain.Entities.Staff;
 
 namespace PMS.Application.Features.Designations.Queries.GetAll

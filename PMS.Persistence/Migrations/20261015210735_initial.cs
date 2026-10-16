@@ -189,6 +189,22 @@ namespace PMS.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ReportResultDailyOutboundSales",
+                columns: table => new
+                {
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CustomerPhoneNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Names = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ReportResultDailyProductivityandTimeAllocationMatrix",
                 columns: table => new
                 {
@@ -204,6 +220,23 @@ namespace PMS.Persistence.Migrations
                     Huddle = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TotalBreak = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProductionHours = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReportResultOutboundSalesSummary",
+                columns: table => new
+                {
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Names = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Sales = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Pending = table.Column<int>(type: "int", nullable: false),
+                    Clawback = table.Column<int>(type: "int", nullable: false),
+                    NonEnrolled = table.Column<int>(type: "int", nullable: false),
+                    Completed = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1273,7 +1306,13 @@ namespace PMS.Persistence.Migrations
                 name: "OutboundSales");
 
             migrationBuilder.DropTable(
+                name: "ReportResultDailyOutboundSales");
+
+            migrationBuilder.DropTable(
                 name: "ReportResultDailyProductivityandTimeAllocationMatrix");
+
+            migrationBuilder.DropTable(
+                name: "ReportResultOutboundSalesSummary");
 
             migrationBuilder.DropTable(
                 name: "ReportResultTriumvirateTangoOfTelephony");

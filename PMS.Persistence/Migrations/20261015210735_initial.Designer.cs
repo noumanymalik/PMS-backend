@@ -12,8 +12,8 @@ using PMS.Persistence.Context;
 namespace PMS.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20261007215535_outboundSales")]
-    partial class outboundSales
+    [Migration("20261015210735_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1194,6 +1194,37 @@ namespace PMS.Persistence.Migrations
                     b.ToTable("SalesCancellation");
                 });
 
+            modelBuilder.Entity("PMS.Domain.Entities.Reporting.ReportResultDailyOutboundSales", b =>
+                {
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerPhoneNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Names")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("ReportResultDailyOutboundSales");
+                });
+
             modelBuilder.Entity("PMS.Domain.Entities.Reporting.ReportResultDailyProductivityandTimeAllocationMatrix", b =>
                 {
                     b.Property<DateTime>("AttendanceDate")
@@ -1244,6 +1275,37 @@ namespace PMS.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.ToTable("ReportResultDailyProductivityandTimeAllocationMatrix");
+                });
+
+            modelBuilder.Entity("PMS.Domain.Entities.Reporting.ReportResultOutboundSalesSummary", b =>
+                {
+                    b.Property<int>("Clawback")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Completed")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Names")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NonEnrolled")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Pending")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Sales")
+                        .HasColumnType("int");
+
+                    b.ToTable("ReportResultOutboundSalesSummary");
                 });
 
             modelBuilder.Entity("PMS.Domain.Entities.Reporting.ReportResultTriumvirateTangoOfTelephony", b =>

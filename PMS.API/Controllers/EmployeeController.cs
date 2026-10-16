@@ -6,6 +6,7 @@ using PMS.Application.Features.Employees.Commands.Create;
 using PMS.Application.Features.Employees.Commands.Update;
 using PMS.Application.Features.Employees.Queries.GetAll;
 using PMS.Application.Features.Employees.Queries.GetAllSupervisor;
+using PMS.Application.Features.Employees.Queries.GetByDepartmentId;
 using PMS.Application.Features.Employees.Queries.GetById;
 using PMS.Application.Features.Employees.Queries.GetBySupervosorId;
 using PMS.Application.Features.Employees.Queries.GetHierarchy;
@@ -57,6 +58,18 @@ namespace PMS.API.Controllers
             var result = await _mediator.Send(new GetBySupervosorIdQuery
             {
                 SupervisorId = supervisorId
+            });
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<ActionResult> GetByDepartmentId([FromQuery] int departmentId)
+        {
+            var result = await _mediator.Send(new GetByDepartmentIdQuery
+            {
+                DepartmentId = departmentId
             });
 
             return Ok(result);
