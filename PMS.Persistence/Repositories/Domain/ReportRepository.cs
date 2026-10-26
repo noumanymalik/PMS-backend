@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using PMS.Application.Interfaces.Repositories.DomainRepositories;
 using PMS.Domain.Entities.Reporting;
 using PMS.Persistence.Context;
+using System.Data;
 
 namespace PMS.Persistence.Repositories.Domain
 {
@@ -66,6 +67,59 @@ namespace PMS.Persistence.Repositories.Domain
                 };
 
             var listing = await DBContext.ReportResultOutboundSalesSummary.FromSqlRaw("EXEC [dbo].[OutboundSalesSummary] @FromDate, @ToDate", sqlParameters.ToArray()).ToListAsync();
+
+            return listing;
+        }
+
+        public async Task<IEnumerable<ReportResultClientTransferActivity>>
+            ReportResultClientTransferActivityData(
+                DateTime startDate,
+                DateTime endDate,
+                int? employeeId,
+                int? helpingHand,
+                string? reportType,
+                int? valid,
+                CancellationToken cancellationToken = default)
+        {
+            var sqlParameters = new List<SqlParameter>
+            {
+                new SqlParameter("@FromDate", SqlDbType.DateTime)
+                {
+                    Value = startDate
+                },
+                new SqlParameter("@ToDate", SqlDbType.DateTime)
+                {
+                    Value = endDate
+                },
+                new SqlParameter("@EmployeeId", SqlDbType.Int)
+                {
+                    Value = (object?)employeeId ?? DBNull.Value
+                },
+                new SqlParameter("@HelpingHand", SqlDbType.Int)
+                {
+                    Value = (object?)helpingHand ?? DBNull.Value
+                },
+                new SqlParameter("@ReportType", SqlDbType.VarChar, 20)
+                {
+                    Value = (object?)reportType ?? DBNull.Value
+                },
+                new SqlParameter("@Valid", SqlDbType.Int)
+                {
+                    Value = (object?)valid ?? DBNull.Value
+                }
+            };
+
+            var listing = await DBContext.ReportResultClientTransferActivity
+                .FromSqlRaw(
+                @"EXEC dbo.ClientTransferActivity
+                @FromDate = @FromDate,
+                @ToDate = @ToDate,
+                @EmployeeId = @EmployeeId,
+                @HelpingHand = @HelpingHand,
+                @ReportType = @ReportType,
+                @Valid = @Valid",
+                    sqlParameters.ToArray())
+                .ToListAsync(cancellationToken);
 
             return listing;
         }

@@ -45,6 +45,7 @@ namespace PMS.Persistence
                    .AddScoped<ICallSummaryAllRepository, CallSummaryAllRepository>()
                    .AddScoped<ICallSummaryInboundRepository, CallSummaryInboundRepository>()
                    .AddScoped<ISalesRepository, SalesRepository>()
+                   .AddScoped<IClientSalesRepository, ClientSalesRepository>()
                    .AddScoped<ICancellationRepository, CancellationRepository>()
                    .AddScoped<ITransportSheduleRepository, TransportSheduleRepository>()
                    .AddScoped<IVehicleRepository, VehicleRepository>()

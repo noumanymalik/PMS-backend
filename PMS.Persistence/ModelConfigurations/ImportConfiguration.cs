@@ -84,4 +84,27 @@ namespace PMS.Persistence.ModelConfigurations
             builder.Property(x => x.Portal).HasMaxLength(20).IsRequired();
         }
     }
+
+    internal class ClientSalesConfiguration : IEntityTypeConfiguration<ClientSales>
+    {
+        public void Configure(EntityTypeBuilder<ClientSales> builder)
+        {
+            builder.Property(x => x.CreateDate);
+            builder.Property(x => x.Date);
+            builder.Property(x => x.EmployeeName).HasMaxLength(50).IsRequired();
+            builder.Property(x => x.InboundCalls).HasColumnType("int");
+            builder.Property(x => x.InboundSales).HasColumnType("int");
+            builder.Property(x => x.TMobileTransfer).HasColumnType("int");
+            builder.Property(x => x.TMobileSales).HasColumnType("int");
+            builder.Property(x => x.ATT_Transfer).HasColumnType("int");
+            builder.Property(x => x.ATT_Sales).HasColumnType("int");
+            builder.Property(x => x.SpectrumTransfer).HasColumnType("int");
+            builder.Property(x => x.SpectrumSales).HasColumnType("int");
+            builder.Property(x => x.SpanishTransfer).HasColumnType("int");
+            builder.Property(x => x.SpanishSales).HasColumnType("int");
+            builder.Property(x => x.ADTCalls).HasColumnType("int");
+            builder.Property(x => x.TotalSales).HasColumnType("int");
+
+        }
+    }
 }

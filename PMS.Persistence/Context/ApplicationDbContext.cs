@@ -66,6 +66,9 @@ namespace PMS.Persistence.Context
         [NotMapped]
         public DbSet<ReportResultOutboundSalesSummary> ReportResultOutboundSalesSummary { get; set; }
 
+        [NotMapped]
+        public DbSet<ReportResultClientTransferActivity> ReportResultClientTransferActivity { get; set; }
+
         public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
         public DbSet<CalenderYear> CalenderYear => Set<CalenderYear>();
         public DbSet<CalenderMonth> CalenderMonth => Set<CalenderMonth>();

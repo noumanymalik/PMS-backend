@@ -76,6 +76,39 @@ namespace PMS.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ClientSales",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EmployeeName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    InboundCalls = table.Column<int>(type: "int", nullable: false),
+                    InboundSales = table.Column<int>(type: "int", nullable: false),
+                    TMobileTransfer = table.Column<int>(type: "int", nullable: false),
+                    TMobileSales = table.Column<int>(type: "int", nullable: false),
+                    ATT_Transfer = table.Column<int>(type: "int", nullable: false),
+                    ATT_Sales = table.Column<int>(type: "int", nullable: false),
+                    SpectrumTransfer = table.Column<int>(type: "int", nullable: false),
+                    SpectrumSales = table.Column<int>(type: "int", nullable: false),
+                    SpanishTransfer = table.Column<int>(type: "int", nullable: false),
+                    SpanishSales = table.Column<int>(type: "int", nullable: false),
+                    ADTCalls = table.Column<int>(type: "int", nullable: false),
+                    TotalSales = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdatedBy = table.Column<int>(type: "int", nullable: true),
+                    DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsArchived = table.Column<bool>(type: "bit", nullable: false),
+                    DateArchived = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClientSales", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Department",
                 columns: table => new
                 {
@@ -186,6 +219,25 @@ namespace PMS.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Permissions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReportResultClientTransferActivity",
+                columns: table => new
+                {
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    In = table.Column<int>(type: "int", nullable: false),
+                    Out = table.Column<int>(type: "int", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Names = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BTN = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    InternetType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AgentTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ForwardedTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BuyerId = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
                 });
 
             migrationBuilder.CreateTable(
@@ -1294,6 +1346,9 @@ namespace PMS.Persistence.Migrations
                 name: "CallSummaryInbound");
 
             migrationBuilder.DropTable(
+                name: "ClientSales");
+
+            migrationBuilder.DropTable(
                 name: "CorrectiveAction");
 
             migrationBuilder.DropTable(
@@ -1304,6 +1359,9 @@ namespace PMS.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "OutboundSales");
+
+            migrationBuilder.DropTable(
+                name: "ReportResultClientTransferActivity");
 
             migrationBuilder.DropTable(
                 name: "ReportResultDailyOutboundSales");

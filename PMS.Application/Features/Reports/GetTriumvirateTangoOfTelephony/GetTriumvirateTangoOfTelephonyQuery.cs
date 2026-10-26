@@ -13,12 +13,12 @@ namespace PMS.Application.Features.Reports.GetTriumvirateTangoOfTelephony
         public DateTime? EndDate { get; init; } = DateTime.UtcNow;
     }
 
-    internal class GetTriumvirateTangoOfTelephonyQueryHandler : IRequestHandler<GetTriumvirateTangoOfTelephonyQuery, IList<ReportResultTriumvirateTangoOfTelephony>>
+    internal class GetTriumvirateTangoOfTelephonyHandler : IRequestHandler<GetTriumvirateTangoOfTelephonyQuery, IList<ReportResultTriumvirateTangoOfTelephony>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public GetTriumvirateTangoOfTelephonyQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public GetTriumvirateTangoOfTelephonyHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;

@@ -22,4 +22,9 @@ namespace PMS.Application.Interfaces.Repositories.DomainRepositories
     {
 
     }
+
+    public interface IClientSalesRepository : IGenericRepository<ClientSales, int>
+    {
+
+    }
 }

@@ -8,6 +8,7 @@ namespace PMS.Application.Interfaces.Repositories.DomainRepositories
         Task<IEnumerable<ReportResultDailyProductivityandTimeAllocationMatrix>> ReportResultDailyProductivityandTimeAllocationMatrix(DateTime startDate, DateTime endDate, int? departmentId, int? employeeId, CancellationToken cancellationToken = default);
         Task<IEnumerable<ReportResultDailyOutboundSales>> ReportResultDailyOutboundSales(DateTime startDate, DateTime endDate, CancellationToken cancellationToken = default);
         Task<IEnumerable<ReportResultOutboundSalesSummary>> ReportResultOutboundSalesSummary(DateTime startDate, DateTime endDate, CancellationToken cancellationToken = default);
+        Task<IEnumerable<ReportResultClientTransferActivity>> ReportResultClientTransferActivityData(DateTime startDate, DateTime endDate, int? employeeId, int? helpingHand, string? reportType, int? valid, CancellationToken cancellationToken = default);
 
     }
 }

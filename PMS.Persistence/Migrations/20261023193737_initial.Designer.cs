@@ -12,7 +12,7 @@ using PMS.Persistence.Context;
 namespace PMS.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20261015210735_initial")]
+    [Migration("20261023193737_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -579,6 +579,84 @@ namespace PMS.Persistence.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("CallSummaryInbound");
+                });
+
+            modelBuilder.Entity("PMS.Domain.Entities.Import.ClientSales", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ADTCalls")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ATT_Sales")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ATT_Transfer")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateArchived")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EmployeeName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("InboundCalls")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InboundSales")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsArchived")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SpanishSales")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpanishTransfer")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpectrumSales")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpectrumTransfer")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TMobileSales")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TMobileTransfer")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalSales")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UpdatedBy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ClientSales");
                 });
 
             modelBuilder.Entity("PMS.Domain.Entities.Import.Sales", b =>
@@ -1192,6 +1270,48 @@ namespace PMS.Persistence.Migrations
                         .IsUnique();
 
                     b.ToTable("SalesCancellation");
+                });
+
+            modelBuilder.Entity("PMS.Domain.Entities.Reporting.ReportResultClientTransferActivity", b =>
+                {
+                    b.Property<string>("AgentTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BTN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BuyerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ForwardedTime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("In")
+                        .HasColumnType("int");
+
+                    b.Property<string>("InternetType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Names")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Out")
+                        .HasColumnType("int");
+
+                    b.ToTable("ReportResultClientTransferActivity");
                 });
 
             modelBuilder.Entity("PMS.Domain.Entities.Reporting.ReportResultDailyOutboundSales", b =>

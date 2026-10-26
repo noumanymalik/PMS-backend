@@ -32,4 +32,11 @@ namespace PMS.Persistence.Repositories.Domain
 
         public SalesRepository(ApplicationDbContext context) : base(context) { DBContext = context; }
     }
+
+    public class ClientSalesRepository : GenericRepository<ClientSales, int>, IClientSalesRepository
+    {
+        private readonly ApplicationDbContext DBContext;
+
+        public ClientSalesRepository(ApplicationDbContext context) : base(context) { DBContext = context; }
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PMS.Application.Features.Reports.GetClientTransferActivity;
 using PMS.Application.Features.Reports.GetDailyOutboundSales;
 using PMS.Application.Features.Reports.GetDailyProductivityandTimeAllocationMatrix;
 using PMS.Application.Features.Reports.GetExcelTriumvirateTangoOfTelephony;
@@ -47,6 +48,11 @@ namespace PMS.API.Controllers
         [HttpGet]
         [Route("[action]")]
         public async Task<ActionResult> GetOutboundSalesSummaryQueryReport([FromQuery] GetOutboundSalesSummaryQuery query, CancellationToken cancellationToken)
+            => Ok(await _mediator.Send(query));
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<ActionResult> GetClientTransferActivityReport([FromQuery] GetClientTransferActivityQuery query, CancellationToken cancellationToken)
             => Ok(await _mediator.Send(query));
     }
 }

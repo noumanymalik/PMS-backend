@@ -44,7 +44,7 @@ namespace PMS.Application.Features.Imports.Commands.ImportSales
 
                 foreach (var item in sales.Sales)
                 {
-                    PMS.Domain.Entities.Import.Sales sale = new PMS.Domain.Entities.Import.Sales();
+                    Domain.Entities.Import.Sales sale = new Domain.Entities.Import.Sales();
                     int empId = await _unitOfWork.EmployeeRepository.GetIdByEmployeeNameAsync(item.AgentName, cancellationToken);
 
                     if (empId != 0)

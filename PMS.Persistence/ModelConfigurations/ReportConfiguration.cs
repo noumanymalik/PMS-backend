@@ -35,4 +35,12 @@ namespace PMS.Persistence.ModelConfigurations
             builder.HasNoKey();
         }
     }
+
+    internal class ReportResultClientTransferActivityConfiguration : IEntityTypeConfiguration<ReportResultClientTransferActivity>
+    {
+        public void Configure(EntityTypeBuilder<ReportResultClientTransferActivity> builder)
+        {
+            builder.HasNoKey();
+        }
+    }
 }

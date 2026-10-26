@@ -32,6 +32,7 @@ namespace PMS.Persistence.Repositories
         public ICallSummaryAllRepository CallSummaryAllRepository { get; set; }
         public ICallSummaryInboundRepository CallSummaryInboundRepository { get; set; }
         public ISalesRepository SalesRepository { get; set; }
+        public IClientSalesRepository ClientSalesRepository { get; set; }
         public ICancellationRepository CancellationRepository { get; set; }
         public ITransportSheduleRepository TransportSheduleRepository { get; set; }
         public IVehicleRepository VehicleRepository { get; set; }
@@ -49,7 +50,7 @@ namespace PMS.Persistence.Repositories
         public UnitOfWork(ApplicationDbContext dbContext, ICalenderDateRepository dateRepo, ICalenderWeekRepository weekRepo, ICalenderMonthRepository monthRepo, ICalenderYearRepository yearRepo, IRotaRepository rotaRepo,
                 IEmployeeRepository empRepo, IShifRepository shiftRepo, IDepartmentRepository deptRepo, IDesignationRepository desgRepo, ILeaveRepository leaveRepo,
                 IUserRepository UserRepo, IRoleRepository RoleRepo, IPermissionRepository permissionRepo, IRolePermissionRepository rolePermissionRepo, ILoanRepository loanRepo, ICorrectiveActionRepository correctiveActionRepo,
-                ICallLogsRepository callLogRepo, ICallSummaryAllRepository callSummaryAllRepo, ICallSummaryInboundRepository callSummaryInboundRepo, ISalesRepository salesRepo, ICancellationRepository cancellationRepo,
+                ICallLogsRepository callLogRepo, ICallSummaryAllRepository callSummaryAllRepo, ICallSummaryInboundRepository callSummaryInboundRepo, ISalesRepository salesRepo, IClientSalesRepository clientSalesRepo, ICancellationRepository cancellationRepo,
                 ITransportRegisterRepository transportRegisterRepo, IVehicleRepository vehicleRepo, ITransportSheduleRepository transportSheduleRepo,
                 IAttendanceRepository attendanceRepo, ILegendRepository legendRepo, IAgentSessionRepository agentSessionRepo, IBreakTypeRepository breakTypeRepo, IAgentBreakRepository agentBreakRepo,
                 IOutboundSalesRepository outboundSalesRepo, IOutboundProductRepository outboundProductRepo, IOutboundSalesStatusRepository outboundSalesStatusRepo,
@@ -78,6 +79,7 @@ namespace PMS.Persistence.Repositories
             CallSummaryAllRepository = callSummaryAllRepo;
             CallSummaryInboundRepository = callSummaryInboundRepo;
             SalesRepository = salesRepo;
+            ClientSalesRepository = clientSalesRepo;
             CancellationRepository = cancellationRepo;
             TransportSheduleRepository = transportSheduleRepo;
             VehicleRepository = vehicleRepo;
