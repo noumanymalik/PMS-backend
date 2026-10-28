@@ -169,6 +169,7 @@
         ProductivityandTimeMatrixReport,
         Daily_Cadence_Report,
         Spectrum_Of_Amplitude_Report,
+        Interstice_Log_Report,
         Polices,
         Policiy_Documents,
         Score_Card,

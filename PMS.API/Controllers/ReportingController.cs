@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PMS.Application.Features.Reports.GetClientTransferActivity;
+using PMS.Application.Features.Reports.GetClientTransferActivityExcel;
 using PMS.Application.Features.Reports.GetDailyOutboundSales;
 using PMS.Application.Features.Reports.GetDailyProductivityandTimeAllocationMatrix;
 using PMS.Application.Features.Reports.GetExcelTriumvirateTangoOfTelephony;
@@ -54,5 +55,18 @@ namespace PMS.API.Controllers
         [Route("[action]")]
         public async Task<ActionResult> GetClientTransferActivityReport([FromQuery] GetClientTransferActivityQuery query, CancellationToken cancellationToken)
             => Ok(await _mediator.Send(query));
+
+        [HttpGet("ClientTransferActivity/download-excel")]
+        public async Task<IActionResult> ClientTransferActivity([FromQuery] GetClientTransferActivityExcelQuery query, CancellationToken cancellationToken)
+        {
+            var excelResponse = await _mediator.Send(query, cancellationToken);
+
+            string fileName = "ClientTransferActivity.xlsx";
+
+            return File(
+                excelResponse["ExcelData"],
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                fileName);
+        }
     }
 }
